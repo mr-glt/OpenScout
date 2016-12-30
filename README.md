@@ -11,15 +11,15 @@
 ##How to Clone, Build and Deploy
 *A better guide will be released closer to the end of build season*
 ###Android App
-1. Download and install <a target="_blank" href="https://developer.android.com/studio/index.html">Android Studio</a>
+1. Download and install <a target="blank" href="https://developer.android.com/studio/index.html">Android Studio</a>
 2. Clone repository.
 3. Open the root of the repository in Android Studio.
 ###Firebase
 1. Create a Google Account.
-2. Visit your <a target="_blank" href="https://console.firebase.google.com/?pli=1">Firebase Console</a>.
+2. Visit your <a target="blank" href="https://console.firebase.google.com/?pli=1">Firebase Console</a>.
 3. Create a new project and call it whatever you would like.
 4. Click on "Add Firebase to your Android app"
-5. Use **Package Name** `xyz.syzygylabs.openscout` and follow <a target="_blank" href="https://developers.google.com/android/guides/client-auth">this</a> to get the debug certificate.
+5. Use **Package Name** `xyz.syzygylabs.openscout` and follow <a target="blank" href="https://developers.google.com/android/guides/client-auth">this</a> to get the debug certificate.
 6. Copy `google-services.json` to `/app/`. You do **not** need to add the dependencies to the `build.gradle`. Hit finish to close the dialogue.
 7. Navigate the *Authentication* tab in the console.
 8. Under *SIGN-IN METHOD* enable `Email/Password` and `Google`. *By default, the Firebase will require a user to be authenticated to read and write to the database.*
