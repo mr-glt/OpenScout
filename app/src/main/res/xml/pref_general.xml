@@ -1,0 +1,18 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/pref_example_list_titles"
+        android:entryValues="@array/pref_example_list_values"
+        android:key="example_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="User Mode" />
+    <EditTextPreference
+        android:key="teamNumber"
+        android:title="Team Number"
+        android:persistent="true"
+        android:dialogTitle="Update team number."
+        android:dialogMessage="Changed Number"
+        android:defaultValue="1"/>
+</PreferenceScreen>

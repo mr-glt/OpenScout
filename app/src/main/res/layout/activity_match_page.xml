@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_match_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="xyz.syzygylabs.openscout.activities.MatchPage"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/pokemon_1_card"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Match #"
+                        android:id="@+id/matchName"
+                        android:textAppearance="@android:style/TextAppearance.Material.Large"
+                        android:textStyle="italic"
+                        android:layout_marginStart="8dp"/>
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Qualifications"
+                        android:id="@+id/matchLevel"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                        android:textStyle="italic"
+                        android:layout_gravity="end"
+                        android:textAlignment="textEnd"
+                        android:layout_marginEnd="5dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Red Alliance"
+                            android:layout_gravity="center_horizontal"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            android:textStyle="bold"
+                            android:textColor="#f44336"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 1"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/red1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 2"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/red2"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 3"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/red3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 4"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/red4"
+                            android:visibility="gone"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Score"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/redScore"
+                            android:visibility="gone"
+                            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VS."
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                        android:textStyle="italic|bold"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Blue Alliance"
+                            android:layout_gravity="center_horizontal"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            android:textStyle="bold"
+                            android:textColor="#2196f3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 1"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/blue1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 2"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/blue2"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 3"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/blue3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teams 4"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/blue4"
+                            android:visibility="gone"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Score"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/blueScore"
+                            android:visibility="gone"
+                            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red Alliance"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="bold"
+            android:textColor="#f44336"/>
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/progress_red"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            wheel:matProg_barColor="#5588FF"
+            wheel:matProg_progressIndeterminate="true"
+            android:layout_gravity="center"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blue Alliance"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="bold"
+            android:textColor="#2196f3"/>
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/progress_blue"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            wheel:matProg_barColor="#5588FF"
+            wheel:matProg_progressIndeterminate="true"
+            android:layout_gravity="center"/>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerBlue"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

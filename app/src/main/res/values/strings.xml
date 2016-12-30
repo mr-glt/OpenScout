@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Open Scout</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_header_general">General</string>
+    <string name="title_activity_main">OpenScout</string>
+    <string-array name="pref_example_list_titles">
+        <item>Scout</item>
+        <item>Driver</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>scout</item>
+        <item>driver</item>
+    </string-array>
+</resources>

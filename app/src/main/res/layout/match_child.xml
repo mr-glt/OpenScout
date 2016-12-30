@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/pokemon_1_card"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Match #"
+            android:id="@+id/matchName"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="italic"
+            android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Qualifications"
+                android:id="@+id/matchLevel"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="italic"
+                android:layout_gravity="end"
+                android:textAlignment="textEnd"
+                android:layout_marginEnd="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Red Alliance"
+                    android:layout_gravity="center_horizontal"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textStyle="bold"
+                    android:textColor="#f44336"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 1"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/red1"
+                    android:textColor="#f44336"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 2"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/red2"
+                    android:textColor="#f44336"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 3"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/red3"
+                    android:textColor="#f44336"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 4"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/red4"
+                    android:visibility="gone"
+                    android:textColor="#f44336"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/redScore"
+                    android:visibility="gone"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VS."
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="italic|bold"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blue Alliance"
+                    android:layout_gravity="center_horizontal"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textStyle="bold"
+                    android:textColor="#2196f3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 1"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/blue1"
+                    android:textColor="#2196f3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 2"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/blue2"
+                    android:textColor="#2196f3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 3"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/blue3"
+                    android:textColor="#2196f3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teams 4"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/blue4"
+                    android:visibility="gone"
+                    android:textColor="#2196f3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/blueScore"
+                    android:visibility="gone"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

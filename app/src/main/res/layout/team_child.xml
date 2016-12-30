@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/pokemon_1_card"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Team Number"
+                android:id="@+id/teamNumber"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/teamLocation"
+                android:text="Location"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textEnd"
+                android:layout_marginEnd="5dp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamNickname"
+            android:text="Team Name"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textStyle="italic"
+            android:textColor="#03a9f4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/neededLabel"
+            android:text="Data Still Needed:"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamRobotType"
+            android:text="- Robot Type"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamRobotDriveTrainType"
+            android:text="- Drive Train Type"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamRobotVision"
+            android:text="- If Robot Has Vision"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"
+            android:visibility="gone"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamRobotPrograming"
+            android:text="- Robot Programing Environment"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamRobotSpeed"
+            android:text="- Robot Speed"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamRobotMotors"
+            android:text="- Number of Motors"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

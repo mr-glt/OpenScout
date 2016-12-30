@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_drive_team"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    tools:context="xyz.syzygylabs.openscout.activities.DriveTeam"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to the"
+        android:id="@+id/eventTitle"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Stats:"
+                android:layout_margin="8dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OPRS"
+                    android:id="@+id/oprs"
+                    android:layout_marginEnd="20dp"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CCWMS"
+                    android:id="@+id/ccwms"
+                    android:layout_marginEnd="20dp"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DPRS"
+                    android:id="@+id/dprs"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matches"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textStyle="bold"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

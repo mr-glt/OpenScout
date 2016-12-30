@@ -1,0 +1,86 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layout.IntroSetup">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team Setup"
+            android:layout_gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"
+            android:textSize="30sp"
+            android:id="@+id/teamSetup"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Team Number"
+            android:layout_gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#e0e0e0"
+            android:textColorLink="#3F51B5"
+            android:layout_marginTop="30dp"
+            android:inputType="number"
+            android:id="@+id/teamnumber"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/radioGroup">
+            <RadioButton android:id="@+id/radio_scout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scout"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFFFFF"/>
+            <RadioButton android:id="@+id/radio_drive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drive Team"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFFFFF"/>
+        </RadioGroup>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pv"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+        <Button
+            android:text="Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/save"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017 Events"
+            android:layout_gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"
+            android:textSize="30sp"
+            android:visibility="gone"
+            android:id="@+id/upEvents"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</FrameLayout>
