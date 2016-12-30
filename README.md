@@ -2,10 +2,9 @@
 
 **OpenScout** is an Android app that provides an end to end scouting solution for teams competing in the *FIRST* Robotics competition. It leverages the Free-Tier of Google Firebase to provide a real time connection between scout and drive teams, while providing an easy-to-deploy database so that any team can run their own.
 <br>
-<center>
 <img src="https://raw.githubusercontent.com/mr-glt/OpenScout/master/Art/Screenshots/login.png" width="275"/>
 <img src="https://raw.githubusercontent.com/mr-glt/OpenScout/master/Art/Screenshots/driver.png" width="275"/>
-<img src="https://raw.githubusercontent.com/mr-glt/OpenScout/master/Art/Screenshots/team.png" width="275"/></center>
+<img src="https://raw.githubusercontent.com/mr-glt/OpenScout/master/Art/Screenshots/team.png" width="275"/>
 ## Disclaimer
 *This app is currently under active development. The framework of the app is implemented, however, data related to the 2017 game will be implemented after kick-off and throughout the season.*
 
