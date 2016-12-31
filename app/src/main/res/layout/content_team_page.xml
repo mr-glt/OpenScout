@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_team_page"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="xyz.syzygylabs.openscout.activities.TeamPage"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:text="Team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:id="@+id/teamNum"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"/>
+
+        <TextView
+        android:text="Team Nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teamNickname"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:text="Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/location"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:text="Rookie Year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rookie"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:text="Website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_website"
+        android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:text="Upload Picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/picture"
+            android:layout_gravity="center_horizontal"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@color/cardview_light_background"
+            android:id="@+id/imageView" />
+
+        <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017 Robot"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="3dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Drive Train:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/drivetrainLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/drivetrain"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="stock, custom, modified"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/drivetrainET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Robot Type:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/typeLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/RobotType"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="short, tall, agile..."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/typeET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Code Type:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/programingLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/programing"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="Java, C++, Labview, Python..."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/programingET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Robot Speed:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/speedLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/speed"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="3 ft/s, 60 ft/m, 3 m/s..."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/speedET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Number of Motors:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/motorsLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/motors"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="2, 4, 6..."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/motorsET"
+                    android:layout_marginStart="16dp"
+                    android:inputType="numberDecimal"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Has Vision:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/visionLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vision"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:id="@+id/visionCB"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Comments:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/commentsLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/comments"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="Other information..."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/commentsET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end">
+
+                <CheckBox
+                    android:text="Mark as Done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/isScoutedCB"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2017 Events"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textStyle="bold"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerThisYear"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2016 Events"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textStyle="bold"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>

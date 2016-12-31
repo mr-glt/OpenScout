@@ -3,12 +3,12 @@ package xyz.syzygylabs.openscout.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,6 +60,7 @@ public class TeamPage extends AppCompatActivity {
     String teamRegion = null;
     String website = null;
     int rookieYear;
+    boolean inEdit=false;
     String location = null;
     String motto = null;
     String nickname = null;
@@ -78,10 +79,11 @@ public class TeamPage extends AppCompatActivity {
     CheckBox visionCB;
     TextView comments;
     EditText commentsET;
-    Button btnDone;
     Button takePicBtn;
+    FloatingActionButton fab;
     ImageView imageView;
     StorageReference storageReference;
+    CheckBox isScouted;
     private static final int GALLERY_INTENT = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,104 @@ public class TeamPage extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         takePicBtn = (Button) findViewById(R.id.picture);
         imageView = (ImageView) findViewById(R.id.imageView);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        isScouted = (CheckBox) findViewById(R.id.isScoutedCB);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(inEdit){
+                    mDatabase.child("teams").child(teamNumber).child("robotComments").setValue(commentsET.getText().toString());
+                    mDatabase.child("teams").child(teamNumber).child("robotDrivetrain").setValue(driveTrainET.getText().toString());
+                    mDatabase.child("teams").child(teamNumber).child("robotHasVision").setValue(visionCB.isChecked());
+                    mDatabase.child("teams").child(teamNumber).child("robotProgramingEnvironment").setValue(codeTypeET.getText().toString());
+                    mDatabase.child("teams").child(teamNumber).child("robotType").setValue(typeET.getText().toString());
+                    mDatabase.child("teams").child(teamNumber).child("speed").setValue(speedET.getText().toString());
+                    mDatabase.child("teams").child(teamNumber).child("robotNumberOfMotors").setValue(Integer.parseInt(motorsET.getText().toString()));
+                    statsThisYear.clear();
+                    statsLastYear.clear();
+                    teamEvents.clear();
+                    teamEventsThis.clear();
+                    if(isScouted.isChecked()){
+                        mDatabase.child("teams").child(teamNumber).child("isScouted").setValue(true);
+                    }
+                    else{
+                        mDatabase.child("teams").child(teamNumber).child("isScouted").setValue(false);
+                    }
+                    isScouted.setVisibility(View.GONE);
+                    inEdit=false;
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_mode_edit_white_24dp));
+                    load();
+                }
+                else{
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_publish_white_24dp));
+                    if(!type.getText().toString().equals("Need Data")){
+                        typeET.setText(type.getText());
+                        type.setVisibility(View.GONE);
+                        typeET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        type.setVisibility(View.GONE);
+                        typeET.setVisibility(View.VISIBLE);
+                    }
+                    if(!driveTrain.getText().toString().equals("Need Data")){
+                        driveTrainET.setText(driveTrain.getText());
+                        driveTrain.setVisibility(View.GONE);
+                        driveTrainET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        driveTrain.setVisibility(View.GONE);
+                        driveTrainET.setVisibility(View.VISIBLE);
+                    }
+                    if(!codeType.getText().toString().equals("Need Data")){
+                        codeTypeET.setText(codeType.getText());
+                        codeType.setVisibility(View.GONE);
+                        codeTypeET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        codeType.setVisibility(View.GONE);
+                        codeTypeET.setVisibility(View.VISIBLE);
+                    }
+                    if(!speed.getText().toString().equals("Need Data")){
+                        speedET.setText(speed.getText());
+                        speed.setVisibility(View.GONE);
+                        speedET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        speed.setVisibility(View.GONE);
+                        speedET.setVisibility(View.VISIBLE);
+                    }
+                    if(!motors.getText().toString().equals("Need Data")){
+                        motorsET.setText(motors.getText());
+                        motors.setVisibility(View.GONE);
+                        motorsET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        motors.setVisibility(View.GONE);
+                        motorsET.setVisibility(View.VISIBLE);
+                    }
+                    if(!vision.getText().toString().equals("Need Data")){
+                        visionCB.setChecked((vision.getText().toString().equals("true") ? true:false));
+                        vision.setVisibility(View.GONE);
+                        visionCB.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        vision.setVisibility(View.GONE);
+                        visionCB.setVisibility(View.VISIBLE);
+                    }
+                    if(!comments.getText().toString().equals("Need Data")){
+                        commentsET.setText(comments.getText());
+                        comments.setVisibility(View.GONE);
+                        commentsET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        comments.setVisibility(View.GONE);
+                        commentsET.setVisibility(View.VISIBLE);
+                    }
+                    isScouted.setVisibility(View.VISIBLE);
+                    inEdit=true;
+                }
+            }
+        });
         takePicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,106 +272,6 @@ public class TeamPage extends AppCompatActivity {
 
         comments = (TextView) findViewById(R.id.comments);
         commentsET = (EditText) findViewById(R.id.commentsET);
-        btnDone = (Button) findViewById(R.id.doneBtn);
-        final Button btnEdit = (Button) findViewById(R.id.editBtn);
-        btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDatabase.child("teams").child(teamNumber).child("isScouted").setValue(true);
-                btnDone.setVisibility(View.INVISIBLE);
-            }
-        });
-        final Button btnSave = (Button) findViewById(R.id.saveBtn);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDatabase.child("teams").child(teamNumber).child("robotComments").setValue(commentsET.getText().toString());
-                mDatabase.child("teams").child(teamNumber).child("robotDrivetrain").setValue(driveTrainET.getText().toString());
-                mDatabase.child("teams").child(teamNumber).child("robotHasVision").setValue(visionCB.isChecked());
-                mDatabase.child("teams").child(teamNumber).child("robotProgramingEnvironment").setValue(codeTypeET.getText().toString());
-                mDatabase.child("teams").child(teamNumber).child("robotType").setValue(typeET.getText().toString());
-                mDatabase.child("teams").child(teamNumber).child("speed").setValue(speedET.getText().toString());
-                mDatabase.child("teams").child(teamNumber).child("robotNumberOfMotors").setValue(Integer.parseInt(motorsET.getText().toString()+"0"));
-                btnSave.setVisibility(View.INVISIBLE);
-                btnEdit.setVisibility(View.VISIBLE);
-                statsThisYear.clear();
-                statsLastYear.clear();
-                teamEvents.clear();
-                teamEventsThis.clear();
-                load();
-            }
-        });
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //mDatabase.child("teams").child(teamNumber).child("isScouted").setValue(true);
-                if(!type.getText().toString().equals("Need Data")){
-                    typeET.setText(type.getText());
-                    type.setVisibility(View.GONE);
-                    typeET.setVisibility(View.VISIBLE);
-                }
-                else{
-                    type.setVisibility(View.GONE);
-                    typeET.setVisibility(View.VISIBLE);
-                }
-                if(!driveTrain.getText().toString().equals("Need Data")){
-                    driveTrainET.setText(driveTrain.getText());
-                    driveTrain.setVisibility(View.GONE);
-                    driveTrainET.setVisibility(View.VISIBLE);
-                }
-                else{
-                    driveTrain.setVisibility(View.GONE);
-                    driveTrainET.setVisibility(View.VISIBLE);
-                }
-                if(!codeType.getText().toString().equals("Need Data")){
-                    codeTypeET.setText(codeType.getText());
-                    codeType.setVisibility(View.GONE);
-                    codeTypeET.setVisibility(View.VISIBLE);
-                }
-                else{
-                    codeType.setVisibility(View.GONE);
-                    codeTypeET.setVisibility(View.VISIBLE);
-                }
-                if(!speed.getText().toString().equals("Need Data")){
-                    speedET.setText(speed.getText());
-                    speed.setVisibility(View.GONE);
-                    speedET.setVisibility(View.VISIBLE);
-                }
-                else{
-                    speed.setVisibility(View.GONE);
-                    speedET.setVisibility(View.VISIBLE);
-                }
-                if(!motors.getText().toString().equals("Need Data")){
-                    motorsET.setText(motors.getText());
-                    motors.setVisibility(View.GONE);
-                    motorsET.setVisibility(View.VISIBLE);
-                }
-                else{
-                    motors.setVisibility(View.GONE);
-                    motorsET.setVisibility(View.VISIBLE);
-                }
-                if(!vision.getText().toString().equals("Need Data")){
-                    visionCB.setChecked((vision.getText().toString().equals("true") ? true:false));
-                    vision.setVisibility(View.GONE);
-                    visionCB.setVisibility(View.VISIBLE);
-                }
-                else{
-                    vision.setVisibility(View.GONE);
-                    visionCB.setVisibility(View.VISIBLE);
-                }
-                if(!comments.getText().toString().equals("Need Data")){
-                    commentsET.setText(comments.getText());
-                    comments.setVisibility(View.GONE);
-                    commentsET.setVisibility(View.VISIBLE);
-                }
-                else{
-                    comments.setVisibility(View.GONE);
-                    commentsET.setVisibility(View.VISIBLE);
-                }
-                btnEdit.setVisibility(View.INVISIBLE);
-                btnSave.setVisibility(View.VISIBLE);
-            }
-        });
         mDatabase.child("teams").child(teamNumber).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -289,9 +289,11 @@ public class TeamPage extends AppCompatActivity {
                             teamNumber = dataSnapshot.getKey();
                             int robotNumberOfMotors = robot.getRobotNumberOfMotors();
                             if(isTeamScouted==null||!isTeamScouted){
-                                btnDone.setVisibility(View.VISIBLE);
+                                isScouted.setChecked(false);
+                            }else{
+                                isScouted.setChecked(true);
                             }
-                            if(robotType==null){
+                            if(robotType==null || robotType.equals("")){
                                 type.setText("Need Data");
                                 type.setVisibility(View.VISIBLE);
                                 typeET.setVisibility(View.GONE);
@@ -300,7 +302,7 @@ public class TeamPage extends AppCompatActivity {
                                 type.setVisibility(View.VISIBLE);
                                 typeET.setVisibility(View.GONE);
                             }
-                            if(robotDriveTrain==null){
+                            if(robotDriveTrain==null || robotDriveTrain.equals("")){
                                 driveTrain.setText("Need Data");
                                 driveTrain.setVisibility(View.VISIBLE);
                                 driveTrainET.setVisibility(View.GONE);
@@ -309,7 +311,7 @@ public class TeamPage extends AppCompatActivity {
                                 driveTrain.setVisibility(View.VISIBLE);
                                 driveTrainET.setVisibility(View.GONE);
                             }
-                            if(robotProgramingEnvironment==null){
+                            if(robotProgramingEnvironment==null || robotProgramingEnvironment.equals("")){
                                 codeType.setText("Need Data");
                                 codeType.setVisibility(View.VISIBLE);
                                 codeTypeET.setVisibility(View.GONE);
@@ -318,7 +320,7 @@ public class TeamPage extends AppCompatActivity {
                                 codeType.setVisibility(View.VISIBLE);
                                 codeTypeET.setVisibility(View.GONE);
                             }
-                            if(robotComments==null){
+                            if(robotComments==null || robotComments.equals("")){
                                 comments.setText("Need Data");
                                 comments.setVisibility(View.VISIBLE);
                                 commentsET.setVisibility(View.GONE);
@@ -327,7 +329,7 @@ public class TeamPage extends AppCompatActivity {
                                 comments.setVisibility(View.VISIBLE);
                                 commentsET.setVisibility(View.GONE);
                             }
-                            if(robotSpeed==null){
+                            if(robotSpeed==null || robotSpeed.equals("")){
                                 speed.setText("Need Data");
                                 speed.setVisibility(View.VISIBLE);
                                 speedET.setVisibility(View.GONE);
@@ -356,7 +358,8 @@ public class TeamPage extends AppCompatActivity {
                             }
                         }
                         else{
-                            btnDone.setVisibility(View.VISIBLE);
+                            isScouted.setChecked(false);
+                            isScouted.setVisibility(View.GONE);
                             type.setText("Need Data");
                             type.setVisibility(View.VISIBLE);
                             typeET.setVisibility(View.GONE);
