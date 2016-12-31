@@ -101,13 +101,25 @@ public class TeamPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(inEdit){
-                    mDatabase.child("teams").child(teamNumber).child("robotComments").setValue(commentsET.getText().toString());
-                    mDatabase.child("teams").child(teamNumber).child("robotDrivetrain").setValue(driveTrainET.getText().toString());
+                    if(!commentsET.getText().toString().equals("")){
+                        mDatabase.child("teams").child(teamNumber).child("robotComments").setValue(commentsET.getText().toString());
+                    }
+                    if(!driveTrainET.getText().toString().equals("")){
+                        mDatabase.child("teams").child(teamNumber).child("robotDrivetrain").setValue(driveTrainET.getText().toString());
+                    }
+                    if(!codeTypeET.getText().toString().equals("")){
+                        mDatabase.child("teams").child(teamNumber).child("robotProgramingEnvironment").setValue(codeTypeET.getText().toString());
+                    }
+                    if(!typeET.getText().toString().equals("")){
+                        mDatabase.child("teams").child(teamNumber).child("robotType").setValue(typeET.getText().toString());
+                    }
+                    if(!speedET.getText().toString().equals("")){
+                        mDatabase.child("teams").child(teamNumber).child("speed").setValue(speedET.getText().toString());
+                    }
+                    if(!motorsET.getText().toString().equals("")){
+                        mDatabase.child("teams").child(teamNumber).child("robotNumberOfMotors").setValue(Integer.parseInt(motorsET.getText().toString()));
+                    }
                     mDatabase.child("teams").child(teamNumber).child("robotHasVision").setValue(visionCB.isChecked());
-                    mDatabase.child("teams").child(teamNumber).child("robotProgramingEnvironment").setValue(codeTypeET.getText().toString());
-                    mDatabase.child("teams").child(teamNumber).child("robotType").setValue(typeET.getText().toString());
-                    mDatabase.child("teams").child(teamNumber).child("speed").setValue(speedET.getText().toString());
-                    mDatabase.child("teams").child(teamNumber).child("robotNumberOfMotors").setValue(Integer.parseInt(motorsET.getText().toString()));
                     statsThisYear.clear();
                     statsLastYear.clear();
                     teamEvents.clear();

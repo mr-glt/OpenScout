@@ -44,33 +44,38 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         if(!teams.get(position).getRobot().getRobotDrivetrain().equals("NA")){
             holder.teamDriveTrainTypeTV.setVisibility(View.GONE);
         }
+        else{
+            holder.teamDriveTrainTypeTV.setVisibility(View.VISIBLE);
+        }
         if(!teams.get(position).getRobot().getRobotProgramingEnvironment().equals("NA")){
             holder.teamProgramingTV.setVisibility(View.GONE);
+        }else{
+            holder.teamProgramingTV.setVisibility(View.VISIBLE);
         }
         if(!teams.get(position).getRobot().getSpeed().equals("NA")){
             holder.teamSpeedTV.setVisibility(View.GONE);
+        }else{
+            holder.teamSpeedTV.setVisibility(View.VISIBLE);
         }
         if(!teams.get(position).getRobot().getRobotType().equals("NA")){
             holder.teamRobotTypeTV.setVisibility(View.GONE);
+        }else{
+            holder.teamRobotTypeTV.setVisibility(View.VISIBLE);
         }
         if(teams.get(position).getRobot().getRobotNumberOfMotors()!=0){
             holder.teamRobotMotorsTV.setVisibility(View.GONE);
+        }else{
+            holder.teamRobotMotorsTV.setVisibility(View.VISIBLE);
         }
         if(!teams.get(position).getRobot().getIsScouted()){
             holder.teamNumberTV.setTextColor(Color.RED);
+            holder.teamLabelTV.setText("Data Still Needed:");
         }
         else{
             holder.teamNumberTV.setTextColor(Color.BLACK);
             holder.teamLabelTV.setText("Team is Scouted.");
         }
 
-
-    }
-    public void remove(int position) {
-
-    }
-
-    public void add(int position) {
 
     }
     @Override
