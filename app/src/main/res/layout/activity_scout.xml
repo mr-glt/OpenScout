@@ -12,18 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         wheel:matProg_barColor="#5588FF" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to the"
-        android:textAppearance="@android:style/TextAppearance.Material.Large"
-        android:textStyle="bold"
-        android:layout_margin="4dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/eventTitle"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:scrollbars="vertical"
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to the"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="bold"
+            android:layout_margin="4dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/eventTitle"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.baoyz.widget.PullRefreshLayout>
 </LinearLayout>

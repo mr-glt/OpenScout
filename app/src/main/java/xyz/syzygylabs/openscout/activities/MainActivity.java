@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences prefs;
     private RecyclerView recyclerView;
-
+    PullRefreshLayout layout;
     //Strings
     private String teamNumber;
 
@@ -67,6 +68,16 @@ public class MainActivity extends AppCompatActivity {
         if(showIntro){
             startActivity(introIntent);
         }
+        layout = (PullRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                todayEvent.clear();
+                events.clear();
+                load();
+            }
+        });
+
 
         load(); //Load
     }
@@ -166,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 recyclerView.addOnItemTouchListener(rvListener);
+                layout.setRefreshing(false);
             }
 
             @Override

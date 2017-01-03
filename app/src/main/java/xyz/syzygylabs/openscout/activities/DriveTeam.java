@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.JsonElement;
@@ -40,6 +41,7 @@ public class DriveTeam extends AppCompatActivity {
     SharedPreferences prefs;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    PullRefreshLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,17 @@ public class DriveTeam extends AppCompatActivity {
         }
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        layout = (PullRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+
+        layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                load();
+            }
+        });
+        load();
+    }
+    private void load(){
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         Call<List<Match>> call = apiService.getMatches("frc" + teamNumber,"2016" + (eventKey.substring(4)));
@@ -84,9 +97,10 @@ public class DriveTeam extends AppCompatActivity {
                         }
                     });
                     recyclerView.addOnItemTouchListener(rvListener);
+                    layout.setRefreshing(false);
                 }
 
-                
+
             }
 
             @Override

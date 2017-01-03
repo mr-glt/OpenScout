@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,7 +49,7 @@ public class Scout extends AppCompatActivity {
     String teamNumber;
     String id;
     String eventName;
-
+    PullRefreshLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +66,8 @@ public class Scout extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 
+        layout = (PullRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+
         Intent intent = getIntent();
         id = intent.getStringExtra("event");
         eventName = intent.getStringExtra("eventName");
@@ -79,6 +82,17 @@ public class Scout extends AppCompatActivity {
         if(!eventName.equals("")){
             getSupportActionBar().setTitle(eventName);
         }
+
+        layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                teams.clear();
+                getTeams();
+            }
+        });
+        getTeams();
+    }
+    private void getTeams(){
         final ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         Call<List<TeamNoRobot>> callTeams = apiService.getTeams(id);
@@ -86,14 +100,14 @@ public class Scout extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<TeamNoRobot>> call, Response<List<TeamNoRobot>> gotResponse) {
                 get(gotResponse);
+
             }
             @Override
             public void onFailure(Call<List<TeamNoRobot>> call, Throwable t) {
 
-             }
+            }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -182,6 +196,7 @@ public class Scout extends AppCompatActivity {
                                 }
                             });
                             recyclerView.addOnItemTouchListener(rvListener);
+                            layout.setRefreshing(false);
                         }else{
                             val++;
                             get(response);
