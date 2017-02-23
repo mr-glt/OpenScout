@@ -247,6 +247,190 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:text="Can Do Gears:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gearsLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:id="@+id/gearsCB"
+                    android:visibility="visible"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Can Shoot:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shootLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:id="@+id/shootCB"
+                    android:visibility="visible"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Fuel per second:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shootSpeedLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shootSpeed"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="balls per second"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shootSpeedET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Accuracy:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/accuracyLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/accuracy"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="percentage of shots made"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/accuracyET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Can Climb:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/climbLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:id="@+id/climbCB"
+                    android:visibility="visible"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Climb Time:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/climbSpeedLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/climbTime"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="time in seconds from rope grab to top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/climbET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Can Defend:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/defendLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:id="@+id/defendCB"
+                    android:visibility="visible"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Hopper Storage:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hopperLabel"
+                    android:layout_marginStart="16dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hopper"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
+                <EditText
+                    android:hint="fuel able to be stored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hopperET"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
                     android:text="Comments:"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -274,7 +458,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="end">
-
                 <CheckBox
                     android:text="Mark as Done"
                     android:layout_width="wrap_content"
@@ -283,7 +466,6 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="5dp"
                     android:visibility="gone"/>
-
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

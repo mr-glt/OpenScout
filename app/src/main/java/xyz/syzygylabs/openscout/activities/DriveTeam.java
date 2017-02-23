@@ -77,7 +77,7 @@ public class DriveTeam extends AppCompatActivity {
     private void load(){
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
-        Call<List<Match>> call = apiService.getMatches("frc" + teamNumber,"2016" + (eventKey.substring(4)));
+        Call<List<Match>> call = apiService.getMatches("frc" + teamNumber,"2017" + (eventKey.substring(4)));
         //TODO update for 2017
         call.enqueue(new Callback<List<Match>>() {
             @Override

@@ -8,12 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 import com.baoyz.widget.PullRefreshLayout;
+import com.google.android.gms.common.api.Batch;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -168,8 +171,9 @@ public class MainActivity extends AppCompatActivity {
                             getBaseContext().startActivity(myIntent);
                         }
                         if(userType.equals("driver")){
-                            Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
+                            Intent myIntent = new Intent(getBaseContext(), BatchEdit.class);
                             myIntent.putExtra("event", events.get(position).getEventKeys());
+                            Log.e("2017Z", events.get(position).getEventKeys());
                             myIntent.putExtra("eventName", events.get(position).getEventName());
                             myIntent.putExtra("showWelcome", false);
                             getBaseContext().startActivity(myIntent);

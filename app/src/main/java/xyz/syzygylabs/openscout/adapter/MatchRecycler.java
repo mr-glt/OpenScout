@@ -63,31 +63,34 @@ public class MatchRecycler extends RecyclerView.Adapter<MatchRecycler.ViewHolder
         if (blueTeams.size()>3){
             holder.blue4.setText(blueTeams.get(3).toString().substring(3));
         }
-        if(matches.get(position).getScoreBreakdown().getBlue().getTotalPoints() != 0){
-            holder.blueScore.setText(matches.get(position).getScoreBreakdown().getBlue().getTotalPoints()+"");
-            holder.blueScore.setVisibility(View.VISIBLE);
+        try {
+            if(matches.get(position).getScoreBreakdown().getBlue().getTotalPoints() != 0){
+                holder.blueScore.setText(matches.get(position).getScoreBreakdown().getBlue().getTotalPoints()+"");
+                holder.blueScore.setVisibility(View.VISIBLE);
+
+            }
+            if(matches.get(position).getScoreBreakdown().getRed().getTotalPoints() != 0){
+                holder.redScore.setText(matches.get(position).getScoreBreakdown().getRed().getTotalPoints()+"");
+                holder.redScore.setVisibility(View.VISIBLE);
+
+            }
+            int blueScore = matches.get(position).getScoreBreakdown().getBlue().getTotalPoints();
+            int redScore = matches.get(position).getScoreBreakdown().getRed().getTotalPoints();
+            if(blueScore>redScore){
+                holder.blueScore.setTypeface(Typeface.DEFAULT_BOLD);
+                holder.redScore.setTypeface(Typeface.DEFAULT);
+            }
+            if(redScore>blueScore){
+                holder.redScore.setTypeface(Typeface.DEFAULT_BOLD);
+                holder.blueScore.setTypeface(Typeface.DEFAULT);
+            }
+            if(redScore==blueScore){
+                holder.blueScore.setTypeface(Typeface.DEFAULT);
+                holder.redScore.setTypeface(Typeface.DEFAULT);
+            }
+        }catch (Exception ignored){
 
         }
-        if(matches.get(position).getScoreBreakdown().getRed().getTotalPoints() != 0){
-            holder.redScore.setText(matches.get(position).getScoreBreakdown().getRed().getTotalPoints()+"");
-            holder.redScore.setVisibility(View.VISIBLE);
-
-        }
-        int blueScore = matches.get(position).getScoreBreakdown().getBlue().getTotalPoints();
-        int redScore = matches.get(position).getScoreBreakdown().getRed().getTotalPoints();
-        if(blueScore>redScore){
-            holder.blueScore.setTypeface(Typeface.DEFAULT_BOLD);
-            holder.redScore.setTypeface(Typeface.DEFAULT);
-        }
-        if(redScore>blueScore){
-            holder.redScore.setTypeface(Typeface.DEFAULT_BOLD);
-            holder.blueScore.setTypeface(Typeface.DEFAULT);
-        }
-        if(redScore==blueScore){
-            holder.blueScore.setTypeface(Typeface.DEFAULT);
-            holder.redScore.setTypeface(Typeface.DEFAULT);
-        }
-
     }
 
     public void remove(int position) {

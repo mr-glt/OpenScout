@@ -126,28 +126,32 @@ public class MatchPage extends AppCompatActivity {
                 if (blueTeams.size()>3){
                     blue4.setText(blueTeams.get(3).toString().substring(3));
                 }
-                if(response.body().getScoreBreakdown().getBlue().getTotalPoints() != 0){
-                    blueScoreTV.setText(response.body().getScoreBreakdown().getBlue().getTotalPoints()+"");
-                    blueScoreTV.setVisibility(View.VISIBLE);
+                try{
+                    if(response.body().getScoreBreakdown().getBlue().getTotalPoints() != 0){
+                        blueScoreTV.setText(response.body().getScoreBreakdown().getBlue().getTotalPoints()+"");
+                        blueScoreTV.setVisibility(View.VISIBLE);
 
-                }
-                if(response.body().getScoreBreakdown().getRed().getTotalPoints() != 0){
-                    redScoreTV.setText(response.body().getScoreBreakdown().getRed().getTotalPoints()+"");
-                    redScoreTV.setVisibility(View.VISIBLE);
-                }
-                int blueScore = response.body().getScoreBreakdown().getBlue().getTotalPoints();
-                int redScore = response.body().getScoreBreakdown().getRed().getTotalPoints();
-                if(blueScore>redScore){
-                    blueScoreTV.setTypeface(Typeface.DEFAULT_BOLD);
-                    redScoreTV.setTypeface(Typeface.DEFAULT);
-                }
-                if(redScore>blueScore){
-                    redScoreTV.setTypeface(Typeface.DEFAULT_BOLD);
-                    blueScoreTV.setTypeface(Typeface.DEFAULT);
-                }
-                if(redScore==blueScore){
-                    blueScoreTV.setTypeface(Typeface.DEFAULT);
-                    redScoreTV.setTypeface(Typeface.DEFAULT);
+                    }
+                    if(response.body().getScoreBreakdown().getRed().getTotalPoints() != 0){
+                        redScoreTV.setText(response.body().getScoreBreakdown().getRed().getTotalPoints()+"");
+                        redScoreTV.setVisibility(View.VISIBLE);
+                    }
+                    int blueScore = response.body().getScoreBreakdown().getBlue().getTotalPoints();
+                    int redScore = response.body().getScoreBreakdown().getRed().getTotalPoints();
+                    if(blueScore>redScore){
+                        blueScoreTV.setTypeface(Typeface.DEFAULT_BOLD);
+                        redScoreTV.setTypeface(Typeface.DEFAULT);
+                    }
+                    if(redScore>blueScore){
+                        redScoreTV.setTypeface(Typeface.DEFAULT_BOLD);
+                        blueScoreTV.setTypeface(Typeface.DEFAULT);
+                    }
+                    if(redScore==blueScore){
+                        blueScoreTV.setTypeface(Typeface.DEFAULT);
+                        redScoreTV.setTypeface(Typeface.DEFAULT);
+                    }
+                }catch (Exception ignored){
+
                 }
                 get();
             }

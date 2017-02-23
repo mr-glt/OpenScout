@@ -65,20 +65,22 @@ public class TeamPage extends AppCompatActivity {
     String motto = null;
     String nickname = null;
     DatabaseReference mDatabase;
-    TextView type;
+    TextView type, driveTrain, codeType,speed,motors,vision,comments, fps, accuracy, climbTime, hopper;
     EditText typeET;
-    TextView driveTrain;
     EditText driveTrainET;
-    TextView codeType;
     EditText codeTypeET;
-    TextView speed;
     EditText speedET;
-    TextView motors;
     EditText motorsET;
-    TextView vision;
-    CheckBox visionCB;
-    TextView comments;
     EditText commentsET;
+    EditText fpsET;
+    EditText accuracyET;
+    EditText climbTimeET;
+    EditText hopperET;
+    CheckBox gearsCB;
+    CheckBox shootCB;
+    CheckBox climbCB;
+    CheckBox defendCB;
+    CheckBox visionCB;
     Button takePicBtn;
     FloatingActionButton fab;
     ImageView imageView;
@@ -284,6 +286,24 @@ public class TeamPage extends AppCompatActivity {
 
         comments = (TextView) findViewById(R.id.comments);
         commentsET = (EditText) findViewById(R.id.commentsET);
+
+        gearsCB = (CheckBox) findViewById(R.id.gearsCB);
+
+        shootCB = (CheckBox) findViewById(R.id.shootCB);
+        fps = (TextView) findViewById(R.id.shootSpeed);
+        fpsET = (EditText) findViewById(R.id.shootSpeedET);
+        accuracy = (TextView) findViewById(R.id.accuracy);
+        accuracyET = (EditText) findViewById(R.id.accuracyET);
+
+        climbCB = (CheckBox) findViewById(R.id.climbCB);
+        climbTime = (TextView) findViewById(R.id.climbTime);
+        climbTimeET = (EditText) findViewById(R.id.climbET);
+
+        defendCB = (CheckBox) findViewById(R.id.defendCB);
+
+        hopper = (TextView) findViewById(R.id.hopper);
+        hopperET = (EditText) findViewById(R.id.hopperET);
+
         mDatabase.child("teams").child(teamNumber).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -295,8 +315,15 @@ public class TeamPage extends AppCompatActivity {
                             String robotName = robot.getRobotName();
                             String robotComments = robot.getRobotComments();
                             String robotProgramingEnvironment = robot.getRobotProgramingEnvironment();
+                            String robotFPS;
+                            String robotAaccuracy;
+                            String robotClimbTime;
+                            String robotHopper;
                             Boolean isTeamScouted = robot.getIsScouted();
                             Boolean robotHasVision = robot.getRobotHasVision();
+                            Boolean robotCanGear;
+                            Boolean robotCanClimb;
+                            Boolean robotCanShoot;
                             String robotSpeed = robot.getSpeed();
                             teamNumber = dataSnapshot.getKey();
                             int robotNumberOfMotors = robot.getRobotNumberOfMotors();

@@ -12,9 +12,6 @@ import xyz.syzygylabs.openscout.objects.TeamNoRobot;
 import xyz.syzygylabs.openscout.objects.match.Match;
 import xyz.syzygylabs.openscout.objects.teamevents.TeamEvents;
 
-/**
- * Created by Charlie on 12/22/2016.
- */
 
 public interface ApiInterface {
     //URL Param for TBA API '?X-TBA-App-Id="frc6027:openscout:v01"'

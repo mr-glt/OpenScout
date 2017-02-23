@@ -14,6 +14,7 @@ public class Robot {
     private String robotProgramingEnvironment;
     private Boolean isScouted;
     private String speed;
+    private String fps;
     public  Robot(){
 
     }
