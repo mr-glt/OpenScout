@@ -45,27 +45,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             holder.teamDriveTrainTypeTV.setVisibility(View.GONE);
         }
         else{
-            holder.teamDriveTrainTypeTV.setVisibility(View.VISIBLE);
+            holder.teamDriveTrainTypeTV.setVisibility(View.GONE);
         }
         if(!teams.get(position).getRobot().getRobotProgramingEnvironment().equals("NA")){
             holder.teamProgramingTV.setVisibility(View.GONE);
         }else{
-            holder.teamProgramingTV.setVisibility(View.VISIBLE);
+            holder.teamProgramingTV.setVisibility(View.GONE);
         }
         if(!teams.get(position).getRobot().getSpeed().equals("NA")){
             holder.teamSpeedTV.setVisibility(View.GONE);
         }else{
-            holder.teamSpeedTV.setVisibility(View.VISIBLE);
+            holder.teamSpeedTV.setVisibility(View.GONE);
         }
         if(!teams.get(position).getRobot().getRobotType().equals("NA")){
             holder.teamRobotTypeTV.setVisibility(View.GONE);
         }else{
-            holder.teamRobotTypeTV.setVisibility(View.VISIBLE);
+            holder.teamRobotTypeTV.setVisibility(View.GONE);
         }
         if(teams.get(position).getRobot().getRobotNumberOfMotors()!=0){
             holder.teamRobotMotorsTV.setVisibility(View.GONE);
         }else{
-            holder.teamRobotMotorsTV.setVisibility(View.VISIBLE);
+            holder.teamRobotMotorsTV.setVisibility(View.GONE);
         }
         if(!teams.get(position).getRobot().getIsScouted()){
             holder.teamNumberTV.setTextColor(Color.RED);

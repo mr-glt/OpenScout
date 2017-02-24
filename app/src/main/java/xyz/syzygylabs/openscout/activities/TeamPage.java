@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,7 +66,8 @@ public class TeamPage extends AppCompatActivity {
     String motto = null;
     String nickname = null;
     DatabaseReference mDatabase;
-    TextView type, driveTrain, codeType,speed,motors,vision,comments, fps, accuracy, climbTime, hopper, climb, shoot, defense, gear;
+    TextView type, driveTrain, codeType,speed,motors,vision,comments, fps, accuracy, climbTime, hopper, climb, shoot, defense, gear,
+            fpsLabel, accuracyLabel, climbSpeedLabel;
     EditText typeET, driveTrainET, codeTypeET, speedET, motorsET, commentsET, fpsET, accuracyET, climbTimeET, hopperET;
     CheckBox gearsCB, shootCB, climbCB, defendCB, visionCB, isScouted;
     Button takePicBtn;
@@ -104,6 +106,10 @@ public class TeamPage extends AppCompatActivity {
                     if(!accuracyET.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("accuracy").setValue(accuracyET.getText().toString());
                     if(!climbTimeET.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("climbTime").setValue(climbTimeET.getText().toString());
                     if(!hopperET.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("hopper").setValue(hopperET.getText().toString());
+                    if(!shootCB.isChecked()) mDatabase.child("teams").child(teamNumber).child("fps").setValue("NA");
+                    if(!shootCB.isChecked()) mDatabase.child("teams").child(teamNumber).child("accuracy").setValue("NA");
+                    if(!climbCB.isChecked()) mDatabase.child("teams").child(teamNumber).child("climbTime").setValue("NA");
+
 
                     mDatabase.child("teams").child(teamNumber).child("robotHasVision").setValue(visionCB.isChecked());
 
@@ -268,9 +274,50 @@ public class TeamPage extends AppCompatActivity {
                         comments.setVisibility(View.GONE);
                         commentsET.setVisibility(View.VISIBLE);
                     }
-
+                    if(!shootCB.isChecked()){
+                        fpsET.setVisibility(View.GONE);
+                        accuracyET.setVisibility(View.GONE);
+                        fpsLabel.setVisibility(View.GONE);
+                        accuracyLabel.setVisibility(View.GONE);
+                    }
+                    if(!climbCB.isChecked()){
+                        climbTime.setVisibility(View.GONE);
+                        climbSpeedLabel.setVisibility(View.GONE);
+                    }
                     isScouted.setVisibility(View.VISIBLE);
                     inEdit=true;
+                    shootCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                           @Override
+                           public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                               if (isChecked){
+                                   fpsET.setVisibility(View.VISIBLE);
+                                   accuracyET.setVisibility(View.VISIBLE);
+                                   fpsLabel.setVisibility(View.VISIBLE);
+                                   accuracyLabel.setVisibility(View.VISIBLE);
+                               }
+                               else{
+                                   fpsET.setVisibility(View.GONE);
+                                   accuracyET.setVisibility(View.GONE);
+                                   fpsLabel.setVisibility(View.GONE);
+                                   accuracyLabel.setVisibility(View.GONE);
+                               }
+                           }
+                       }
+                    );
+                    climbCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                           @Override
+                           public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                               if (isChecked){
+                                   climbTimeET.setVisibility(View.VISIBLE);
+                                   climbSpeedLabel.setVisibility(View.VISIBLE);
+                               }
+                               else{
+                                   climbTimeET.setVisibility(View.GONE);
+                                   climbSpeedLabel.setVisibility(View.GONE);
+                               }
+                           }
+                       }
+                    );
                 }
             }
         });
@@ -360,14 +407,17 @@ public class TeamPage extends AppCompatActivity {
         shootCB = (CheckBox) findViewById(R.id.shootCB);
         shoot = (TextView) findViewById(R.id.shoot);
 
+        fpsLabel = (TextView) findViewById(R.id.shootSpeedLabel);
         fps = (TextView) findViewById(R.id.shootSpeed);
         fpsET = (EditText) findViewById(R.id.shootSpeedET);
+        accuracyLabel = (TextView) findViewById(R.id.accuracyLabel);
         accuracy = (TextView) findViewById(R.id.accuracy);
         accuracyET = (EditText) findViewById(R.id.accuracyET);
 
         climbCB = (CheckBox) findViewById(R.id.climbCB);
         climb = (TextView) findViewById(R.id.climb);
 
+        climbSpeedLabel = (TextView) findViewById(R.id.climbSpeedLabel);
         climbTime = (TextView) findViewById(R.id.climbTime);
         climbTimeET = (EditText) findViewById(R.id.climbET);
 
@@ -483,7 +533,7 @@ public class TeamPage extends AppCompatActivity {
                                 climbTime.setVisibility(View.VISIBLE);
                                 climbTimeET.setVisibility(View.GONE);
                             }else{
-                                climbTime.setText(robotAccuracy);
+                                climbTime.setText(robotClimbTime);
                                 climbTime.setVisibility(View.VISIBLE);
                                 climbTimeET.setVisibility(View.GONE);
                             }
@@ -492,7 +542,7 @@ public class TeamPage extends AppCompatActivity {
                                 fps.setVisibility(View.VISIBLE);
                                 fpsET.setVisibility(View.GONE);
                             }else{
-                                fps.setText(robotAccuracy);
+                                fps.setText(robotFPS);
                                 fps.setVisibility(View.VISIBLE);
                                 fpsET.setVisibility(View.GONE);
                             }
@@ -501,7 +551,7 @@ public class TeamPage extends AppCompatActivity {
                                 hopper.setVisibility(View.VISIBLE);
                                 hopperET.setVisibility(View.GONE);
                             }else{
-                                hopper.setText(robotAccuracy);
+                                hopper.setText(robotHopper);
                                 hopper.setVisibility(View.VISIBLE);
                                 hopperET.setVisibility(View.GONE);
                             }
@@ -540,6 +590,16 @@ public class TeamPage extends AppCompatActivity {
                                 defense.setText(robotDefense+"");
                                 defense.setVisibility(View.VISIBLE);
                                 defendCB.setVisibility(View.GONE);
+                            }
+                            if(!robotCanShoot){
+                                fps.setVisibility(View.GONE);
+                                accuracy.setVisibility(View.GONE);
+                                fpsLabel.setVisibility(View.GONE);
+                                accuracyLabel.setVisibility(View.GONE);
+                            }
+                            if(!robotCanClimb){
+                                climbSpeedLabel.setVisibility(View.GONE);
+                                climbTime.setVisibility(View.GONE);
                             }
                         }
                         else{
