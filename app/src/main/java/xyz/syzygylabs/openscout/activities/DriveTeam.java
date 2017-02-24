@@ -108,7 +108,7 @@ public class DriveTeam extends AppCompatActivity {
 
             }
         });
-        Call<JsonElement> eventData = apiService.getEventStats("2016" + (eventKey.substring(4)));
+        Call<JsonElement> eventData = apiService.getEventStats("2017" + (eventKey.substring(4)));
         eventData.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
