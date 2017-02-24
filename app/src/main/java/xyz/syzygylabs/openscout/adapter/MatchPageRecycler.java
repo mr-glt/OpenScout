@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -71,30 +72,20 @@ public class MatchPageRecycler extends RecyclerView.Adapter<MatchPageRecycler.Vi
         }else{
             holder.motors.setText(String.valueOf(matchTeamInfos.get(position).getRobot().getRobotNumberOfMotors()));
         }
-        if(matchTeamInfos.get(position).getRobot().getRobotHasVision()==null){
-            holder.vision.setText("Need Data");
-        }else{
-            holder.vision.setText(matchTeamInfos.get(position).getRobot().getRobotHasVision()+"");
+        if(matchTeamInfos.get(position).getRobot().getRobotHasVision()!=null){
+            holder.visionCB.setChecked(matchTeamInfos.get(position).getRobot().getRobotHasVision());
         }
-        if(matchTeamInfos.get(position).getRobot().getGear()==null){
-            holder.gear.setText("Need Data");
-        }else{
-            holder.gear.setText(matchTeamInfos.get(position).getRobot().getGear()+"");
+        if(matchTeamInfos.get(position).getRobot().getGear()!=null){
+            holder.gearCB.setChecked(matchTeamInfos.get(position).getRobot().getGear());
         }
-        if(matchTeamInfos.get(position).getRobot().getShoot()==null){
-            holder.shoot.setText("Need Data");
-        }else{
-            holder.shoot.setText(matchTeamInfos.get(position).getRobot().getShoot()+"");
+        if(matchTeamInfos.get(position).getRobot().getShoot()!=null){
+            holder.shootCB.setChecked(matchTeamInfos.get(position).getRobot().getShoot());
         }
-        if(matchTeamInfos.get(position).getRobot().getClimb()==null){
-            holder.climb.setText("Need Data");
-        }else{
-            holder.climb.setText(matchTeamInfos.get(position).getRobot().getClimb()+"");
+        if(matchTeamInfos.get(position).getRobot().getClimb()!=null){
+            holder.climbCB.setChecked(matchTeamInfos.get(position).getRobot().getClimb());
         }
-        if(matchTeamInfos.get(position).getRobot().getDefend()==null){
-            holder.defense.setText("Need Data");
-        }else{
-            holder.defense.setText(matchTeamInfos.get(position).getRobot().getDefend()+"");
+        if(matchTeamInfos.get(position).getRobot().getDefend()!=null){
+            holder.defenseCB.setChecked(matchTeamInfos.get(position).getRobot().getDefend());
         }
         if(matchTeamInfos.get(position).getRobot().getFps()==null){
             holder.fps.setText("Need Data");
@@ -149,8 +140,9 @@ public class MatchPageRecycler extends RecyclerView.Adapter<MatchPageRecycler.Vi
         LinearLayout layout;
         CardView cardView;
         TextView moreInfoTV, eventDPRSTV, eventCCWMSTV , eventOPRSTV, eventNamesTV, type, driveTrain,codeType,
-                speed, motors, vision, comments, teamNumberTV, teamNicknameTV,teamLocationTV, fps, accuracy,
-                climbTime, hopper, climb, shoot, defense, gear;
+                speed, motors, comments, teamNumberTV, teamNicknameTV,teamLocationTV, fps, accuracy,
+                climbTime, hopper;
+        CheckBox visionCB, climbCB, gearCB, shootCB, defenseCB;
         public ViewHolder(View itemView) {
             super(itemView);
             teamNumberTV = (TextView) itemView.findViewById(R.id.teamNumber);
@@ -166,18 +158,24 @@ public class MatchPageRecycler extends RecyclerView.Adapter<MatchPageRecycler.Vi
             codeType = (TextView) itemView.findViewById(R.id.programing);
             speed = (TextView) itemView.findViewById(R.id.speed);
             motors = (TextView) itemView.findViewById(R.id.motors);
-            vision = (TextView) itemView.findViewById(R.id.vision);
             comments = (TextView) itemView.findViewById(R.id.comments);
             teamNicknameTV = (TextView) itemView.findViewById(R.id.teamNickname);
             teamLocationTV = (TextView) itemView.findViewById(R.id.teamLocation);
-            gear = (TextView) itemView.findViewById(R.id.gears);
-            shoot = (TextView) itemView.findViewById(R.id.shoot);
             fps = (TextView) itemView.findViewById(R.id.shootSpeed);
             accuracy = (TextView) itemView.findViewById(R.id.accuracy);
-            climb = (TextView) itemView.findViewById(R.id.climb);
             climbTime = (TextView) itemView.findViewById(R.id.climbTime);
-            defense = (TextView) itemView.findViewById(R.id.defend);
             hopper = (TextView) itemView.findViewById(R.id.hopper);
+            visionCB = (CheckBox) itemView.findViewById(R.id.visionCB);
+            climbCB = (CheckBox) itemView.findViewById(R.id.climbCB);
+            gearCB = (CheckBox) itemView.findViewById(R.id.gearsCB);
+            shootCB = (CheckBox) itemView.findViewById(R.id.shootCB);
+            defenseCB = (CheckBox) itemView.findViewById(R.id.defendCB);
+            visionCB.setEnabled(false);
+            climbCB.setEnabled(false);
+            gearCB.setEnabled(false);
+            shootCB.setEnabled(false);
+            defenseCB.setEnabled(false);
+
         }
     }
 }

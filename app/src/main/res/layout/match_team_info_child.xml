@@ -200,13 +200,13 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
-                <TextView
-                    android:text=""
-                    android:layout_width="match_parent"
+                <CheckBox
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/vision"
                     android:layout_marginStart="16dp"
-                    android:visibility="visible"/>
+                    android:id="@+id/visionCB"
+                    android:visibility="visible"
+                    android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -240,13 +240,13 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
-                <TextView
-                    android:text=""
-                    android:layout_width="match_parent"
+                <CheckBox
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/gears"
                     android:layout_marginStart="16dp"
-                    android:visibility="visible"/>
+                    android:id="@+id/gearsCB"
+                    android:visibility="visible"
+                    android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -260,13 +260,13 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
-                <TextView
-                    android:text=""
-                    android:layout_width="match_parent"
+                <CheckBox
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/shoot"
                     android:layout_marginStart="16dp"
-                    android:visibility="visible"/>
+                    android:id="@+id/shootCB"
+                    android:visibility="visible"
+                    android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -320,13 +320,13 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
-                <TextView
-                    android:text=""
-                    android:layout_width="match_parent"
+                <CheckBox
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/climb"
                     android:layout_marginStart="16dp"
-                    android:visibility="visible"/>
+                    android:id="@+id/climbCB"
+                    android:visibility="visible"
+                    android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -360,13 +360,13 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
-                <TextView
-                    android:text=""
-                    android:layout_width="match_parent"
+                <CheckBox
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/defend"
                     android:layout_marginStart="16dp"
-                    android:visibility="visible"/>
+                    android:id="@+id/defendCB"
+                    android:visibility="visible"
+                    android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
