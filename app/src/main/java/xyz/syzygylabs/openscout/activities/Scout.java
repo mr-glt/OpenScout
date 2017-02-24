@@ -146,8 +146,16 @@ public class Scout extends AppCompatActivity {
                             String robotName = robot.getRobotName();
                             String robotComments = robot.getRobotComments();
                             String robotProgramingEnvironment = robot.getRobotProgramingEnvironment();
+                            String robotFPS = robot.getFps();
+                            String robotAccuracy = robot.getAccuracy();
+                            String robotClimbTime = robot.getClimbTime();
+                            String robotHopper = robot.getHopper();
                             Boolean isTeamScouted = robot.getIsScouted();
                             Boolean robotHasVision = robot.getRobotHasVision();
+                            Boolean robotCanGear = robot.getGear();
+                            Boolean robotCanClimb = robot.getClimb();
+                            Boolean robotCanShoot = robot.getShoot();
+                            Boolean robotDefense = robot.getDefend();
                             String robotSpeed = robot.getSpeed();
                             teamNumber = dataSnapshot.getKey();
                             int robotNumberOfMotors = robot.getRobotNumberOfMotors();
@@ -157,9 +165,12 @@ public class Scout extends AppCompatActivity {
                                     response.body().get(val).getLocality(),response.body().get(val).getRegion(),
                                     response.body().get(val).getCountryName(),response.body().get(val).getKey(),
                                     response.body().get(val).getMotto(),response.body().get(val).getWebsite(),
-                                    response.body().get(val).getRookieYear()+"", new Robot((robotName!=null) ? robotName:"NA",(robotType!=null) ? robotType:"NA",(robotDriveTrain!=null) ? robotDriveTrain:"NA",
-                                    (robotNumberOfMotors!=0) ? robotNumberOfMotors:0,(robotComments!=null) ? robotComments:"NA",(robotHasVision!=null) ? robotHasVision:false,
-                                    (robotProgramingEnvironment!=null) ? robotProgramingEnvironment:"NA",(isTeamScouted!=null) ? isTeamScouted:false, (robotSpeed!=null) ? robotSpeed:"NA")));
+                                    response.body().get(val).getRookieYear()+"", new Robot((robotName != null) ? robotName : "NA", (robotType != null) ? robotType : "NA", (robotDriveTrain != null) ? robotDriveTrain : "NA",
+                                    (robotNumberOfMotors != 0) ? robotNumberOfMotors : 0, (robotComments != null) ? robotComments : "NA", (robotHasVision != null) ? robotHasVision : false,
+                                    (robotProgramingEnvironment != null) ? robotProgramingEnvironment : "NA", (isTeamScouted != null) ? isTeamScouted : false, (robotSpeed != null) ? robotSpeed : "NA",
+                                    (robotFPS != null) ? robotFPS : "NA", (robotAccuracy != null) ? robotAccuracy : "NA",(robotClimbTime != null) ? robotClimbTime : "NA",
+                                    (robotHopper != null) ? robotHopper : "NA", (robotCanGear != null) ? robotCanGear : false, (robotCanShoot != null) ? robotCanShoot : false,
+                                    (robotCanClimb != null) ? robotCanClimb : false,(robotDefense != null) ? robotDefense : false)));
                         }
                         else{
                             teams.add(new Team(response.body().get(val).getNickname(), response.body().get(val).getName(),
@@ -167,8 +178,7 @@ public class Scout extends AppCompatActivity {
                                     response.body().get(val).getLocality(),response.body().get(val).getRegion(),
                                     response.body().get(val).getCountryName(),response.body().get(val).getKey(),
                                     response.body().get(val).getMotto(),response.body().get(val).getWebsite(),
-                                    response.body().get(val).getRookieYear()+"", new Robot("NA","NA","NA",0,"NA",false,
-                                    "NA",false, "NA")));
+                                    response.body().get(val).getRookieYear()+"", new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA", "NA", "NA", "NA", "NA", false,false,false,false)));
                         }
 
                         if (val+1>=response.body().size()){

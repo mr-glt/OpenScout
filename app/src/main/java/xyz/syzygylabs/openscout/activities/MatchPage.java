@@ -212,16 +212,27 @@ public class MatchPage extends AppCompatActivity {
                                                 String robotName = robot.getRobotName();
                                                 String robotComments = robot.getRobotComments();
                                                 String robotProgramingEnvironment = robot.getRobotProgramingEnvironment();
+                                                String robotFPS = robot.getFps();
+                                                String robotAccuracy = robot.getAccuracy();
+                                                String robotClimbTime = robot.getClimbTime();
+                                                String robotHopper = robot.getHopper();
                                                 Boolean isTeamScouted = robot.getIsScouted();
                                                 Boolean robotHasVision = robot.getRobotHasVision();
+                                                Boolean robotCanGear = robot.getGear();
+                                                Boolean robotCanClimb = robot.getClimb();
+                                                Boolean robotCanShoot = robot.getShoot();
+                                                Boolean robotDefense = robot.getDefend();
                                                 String robotSpeed = robot.getSpeed();
                                                 int robotNumberOfMotors = robot.getRobotNumberOfMotors();
 
                                                 robotsRed.add(new Robot((robotName != null) ? robotName : "NA", (robotType != null) ? robotType : "NA", (robotDriveTrain != null) ? robotDriveTrain : "NA",
                                                         (robotNumberOfMotors != 0) ? robotNumberOfMotors : 0, (robotComments != null) ? robotComments : "NA", (robotHasVision != null) ? robotHasVision : false,
-                                                        (robotProgramingEnvironment != null) ? robotProgramingEnvironment : "NA", (isTeamScouted != null) ? isTeamScouted : false, (robotSpeed != null) ? robotSpeed : "NA"));
+                                                        (robotProgramingEnvironment != null) ? robotProgramingEnvironment : "NA", (isTeamScouted != null) ? isTeamScouted : false, (robotSpeed != null) ? robotSpeed : "NA",
+                                                        (robotFPS != null) ? robotFPS : "NA", (robotAccuracy != null) ? robotAccuracy : "NA",(robotClimbTime != null) ? robotClimbTime : "NA",
+                                                        (robotHopper != null) ? robotHopper : "NA", (robotCanGear != null) ? robotCanGear : false, (robotCanShoot != null) ? robotCanShoot : false,
+                                                        (robotCanClimb != null) ? robotCanClimb : false,(robotDefense != null) ? robotDefense : false));
                                             } else {
-                                                robotsRed.add(new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA"));
+                                                robotsRed.add(new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA", "NA", "NA", "NA", "NA", false,false,false,false));
                                             }
                                             matchTeamInfosRed.add(new MatchTeamInfo(teamInfoRed.get(val), statsRed.get(val), robotsRed.get(val)));
                                             if(val+1>=redTeams.size()){
@@ -287,16 +298,27 @@ public class MatchPage extends AppCompatActivity {
                                                 String robotName = robot.getRobotName();
                                                 String robotComments = robot.getRobotComments();
                                                 String robotProgramingEnvironment = robot.getRobotProgramingEnvironment();
+                                                String robotFPS = robot.getFps();
+                                                String robotAccuracy = robot.getAccuracy();
+                                                String robotClimbTime = robot.getClimbTime();
+                                                String robotHopper = robot.getHopper();
                                                 Boolean isTeamScouted = robot.getIsScouted();
                                                 Boolean robotHasVision = robot.getRobotHasVision();
+                                                Boolean robotCanGear = robot.getGear();
+                                                Boolean robotCanClimb = robot.getClimb();
+                                                Boolean robotCanShoot = robot.getShoot();
+                                                Boolean robotDefense = robot.getDefend();
                                                 String robotSpeed = robot.getSpeed();
                                                 int robotNumberOfMotors = robot.getRobotNumberOfMotors();
 
                                                 robotsBlue.add(new Robot((robotName != null) ? robotName : "NA", (robotType != null) ? robotType : "NA", (robotDriveTrain != null) ? robotDriveTrain : "NA",
                                                         (robotNumberOfMotors != 0) ? robotNumberOfMotors : 0, (robotComments != null) ? robotComments : "NA", (robotHasVision != null) ? robotHasVision : false,
-                                                        (robotProgramingEnvironment != null) ? robotProgramingEnvironment : "NA", (isTeamScouted != null) ? isTeamScouted : false, (robotSpeed != null) ? robotSpeed : "NA"));
+                                                        (robotProgramingEnvironment != null) ? robotProgramingEnvironment : "NA", (isTeamScouted != null) ? isTeamScouted : false, (robotSpeed != null) ? robotSpeed : "NA",
+                                                        (robotFPS != null) ? robotFPS : "NA", (robotAccuracy != null) ? robotAccuracy : "NA",(robotClimbTime != null) ? robotClimbTime : "NA",
+                                                        (robotHopper != null) ? robotHopper : "NA", (robotCanGear != null) ? robotCanGear : false, (robotCanShoot != null) ? robotCanShoot : false,
+                                                        (robotCanClimb != null) ? robotCanClimb : false,(robotDefense != null) ? robotDefense : false));
                                             } else {
-                                                robotsBlue.add(new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA"));
+                                                robotsBlue.add(new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA", "NA", "NA", "NA", "NA", false,false,false,false));
                                             }
                                             matchTeamInfosBlue.add(new MatchTeamInfo(teamInfoBlue.get(val), statsBlue.get(val), robotsBlue.get(val)));
                                             if(val+1>=blueTeams.size()){

@@ -93,7 +93,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/drivetrain"
@@ -120,7 +120,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/RobotType"
@@ -147,7 +147,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/programing"
@@ -174,7 +174,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/speed"
@@ -201,7 +201,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/motors"
@@ -229,7 +229,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/vision"
@@ -254,12 +254,19 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
+                <TextView
+                    android:text="Need Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gears"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:id="@+id/gearsCB"
-                    android:visibility="visible"/>
+                    android:visibility="gone"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -273,12 +280,19 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
+                <TextView
+                    android:text="Need Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shoot"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:id="@+id/shootCB"
-                    android:visibility="visible"/>
+                    android:visibility="gone"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -293,7 +307,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/shootSpeed"
@@ -319,13 +333,15 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
+
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/accuracy"
                     android:layout_marginStart="16dp"
                     android:visibility="visible"/>
+
                 <EditText
                     android:hint="percentage of shots made"
                     android:layout_width="match_parent"
@@ -346,12 +362,19 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
+                <TextView
+                    android:text="Need Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/climb"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:id="@+id/climbCB"
-                    android:visibility="visible"/>
+                    android:visibility="gone"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -366,7 +389,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/climbTime"
@@ -392,12 +415,19 @@
                     android:layout_marginStart="16dp"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
+                <TextView
+                    android:text="Need Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/defend"
+                    android:layout_marginStart="16dp"
+                    android:visibility="visible"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:id="@+id/defendCB"
-                    android:visibility="visible"/>
+                    android:visibility="gone"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -412,7 +442,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/hopper"
@@ -439,7 +469,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
                 <TextView
-                    android:text=""
+                    android:text="Need Data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/comments"

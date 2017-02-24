@@ -65,76 +65,70 @@ public class TeamPage extends AppCompatActivity {
     String motto = null;
     String nickname = null;
     DatabaseReference mDatabase;
-    TextView type, driveTrain, codeType,speed,motors,vision,comments, fps, accuracy, climbTime, hopper;
-    EditText typeET;
-    EditText driveTrainET;
-    EditText codeTypeET;
-    EditText speedET;
-    EditText motorsET;
-    EditText commentsET;
-    EditText fpsET;
-    EditText accuracyET;
-    EditText climbTimeET;
-    EditText hopperET;
-    CheckBox gearsCB;
-    CheckBox shootCB;
-    CheckBox climbCB;
-    CheckBox defendCB;
-    CheckBox visionCB;
+    TextView type, driveTrain, codeType,speed,motors,vision,comments, fps, accuracy, climbTime, hopper, climb, shoot, defense, gear;
+    EditText typeET, driveTrainET, codeTypeET, speedET, motorsET, commentsET, fpsET, accuracyET, climbTimeET, hopperET;
+    CheckBox gearsCB, shootCB, climbCB, defendCB, visionCB, isScouted;
     Button takePicBtn;
     FloatingActionButton fab;
     ImageView imageView;
     StorageReference storageReference;
-    CheckBox isScouted;
     private static final int GALLERY_INTENT = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_page);
         Intent intent = getIntent();
         teamNumber = intent.getStringExtra("teamNum");
+
         load();
+
         storageReference = FirebaseStorage.getInstance().getReference();
         takePicBtn = (Button) findViewById(R.id.picture);
         imageView = (ImageView) findViewById(R.id.imageView);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         isScouted = (CheckBox) findViewById(R.id.isScoutedCB);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(inEdit){
-                    if(!commentsET.getText().toString().equals("")){
-                        mDatabase.child("teams").child(teamNumber).child("robotComments").setValue(commentsET.getText().toString());
-                    }
-                    if(!driveTrainET.getText().toString().equals("")){
-                        mDatabase.child("teams").child(teamNumber).child("robotDrivetrain").setValue(driveTrainET.getText().toString());
-                    }
-                    if(!codeTypeET.getText().toString().equals("")){
-                        mDatabase.child("teams").child(teamNumber).child("robotProgramingEnvironment").setValue(codeTypeET.getText().toString());
-                    }
-                    if(!typeET.getText().toString().equals("")){
-                        mDatabase.child("teams").child(teamNumber).child("robotType").setValue(typeET.getText().toString());
-                    }
-                    if(!speedET.getText().toString().equals("")){
-                        mDatabase.child("teams").child(teamNumber).child("speed").setValue(speedET.getText().toString());
-                    }
-                    if(!motorsET.getText().toString().equals("")){
-                        mDatabase.child("teams").child(teamNumber).child("robotNumberOfMotors").setValue(Integer.parseInt(motorsET.getText().toString()));
-                    }
+                    if(!commentsET.getText().toString().equals("")) mDatabase.child("teams").child(teamNumber).child("robotComments").setValue(commentsET.getText().toString());
+                    if(!driveTrainET.getText().toString().equals("")) mDatabase.child("teams").child(teamNumber).child("robotDrivetrain").setValue(driveTrainET.getText().toString());
+                    if(!codeTypeET.getText().toString().equals("")) mDatabase.child("teams").child(teamNumber).child("robotProgramingEnvironment").setValue(codeTypeET.getText().toString());
+                    if(!typeET.getText().toString().equals("")) mDatabase.child("teams").child(teamNumber).child("robotType").setValue(typeET.getText().toString());
+                    if(!speedET.getText().toString().equals("")) mDatabase.child("teams").child(teamNumber).child("speed").setValue(speedET.getText().toString());
+                    if(!motorsET.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("robotNumberOfMotors").setValue(Integer.parseInt(motorsET.getText().toString()));
+
+                    if(!fps.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("fps").setValue(fpsET.getText().toString());
+                    if(!accuracyET.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("accuracy").setValue(accuracyET.getText().toString());
+                    if(!climbTimeET.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("climbTime").setValue(climbTimeET.getText().toString());
+                    if(!hopperET.getText().toString().equals(""))mDatabase.child("teams").child(teamNumber).child("hopper").setValue(hopperET.getText().toString());
+
                     mDatabase.child("teams").child(teamNumber).child("robotHasVision").setValue(visionCB.isChecked());
+
+                    mDatabase.child("teams").child(teamNumber).child("gear").setValue(gearsCB.isChecked());
+                    mDatabase.child("teams").child(teamNumber).child("shoot").setValue(shootCB.isChecked());
+                    mDatabase.child("teams").child(teamNumber).child("climb").setValue(climbCB.isChecked());
+                    mDatabase.child("teams").child(teamNumber).child("defend").setValue(defendCB.isChecked());
+
                     statsThisYear.clear();
                     statsLastYear.clear();
                     teamEvents.clear();
                     teamEventsThis.clear();
+
                     if(isScouted.isChecked()){
                         mDatabase.child("teams").child(teamNumber).child("isScouted").setValue(true);
                     }
                     else{
                         mDatabase.child("teams").child(teamNumber).child("isScouted").setValue(false);
                     }
+
                     isScouted.setVisibility(View.GONE);
+
                     inEdit=false;
                     fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_mode_edit_white_24dp));
+
                     load();
                 }
                 else{
@@ -185,13 +179,85 @@ public class TeamPage extends AppCompatActivity {
                         motorsET.setVisibility(View.VISIBLE);
                     }
                     if(!vision.getText().toString().equals("Need Data")){
-                        visionCB.setChecked((vision.getText().toString().equals("true") ? true:false));
+                        visionCB.setChecked((vision.getText().toString().equals("true")));
                         vision.setVisibility(View.GONE);
                         visionCB.setVisibility(View.VISIBLE);
                     }
                     else{
                         vision.setVisibility(View.GONE);
                         visionCB.setVisibility(View.VISIBLE);
+                    }
+                    if(!fps.getText().toString().equals("Need Data")){
+                        fpsET.setText(fps.getText());
+                        fps.setVisibility(View.GONE);
+                        fpsET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        fps.setVisibility(View.GONE);
+                        fpsET.setVisibility(View.VISIBLE);
+                    }
+                    if(!hopper.getText().toString().equals("Need Data")){
+                        hopperET.setText(hopper.getText());
+                        hopper.setVisibility(View.GONE);
+                        hopperET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        hopper.setVisibility(View.GONE);
+                        hopperET.setVisibility(View.VISIBLE);
+                    }
+                    if(!accuracy.getText().toString().equals("Need Data")){
+                        accuracyET.setText(accuracy.getText());
+                        accuracy.setVisibility(View.GONE);
+                        accuracyET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        accuracy.setVisibility(View.GONE);
+                        accuracyET.setVisibility(View.VISIBLE);
+                    }
+                    if(!climbTime.getText().toString().equals("Need Data")){
+                        climbTimeET.setText(climbTime.getText());
+                        climbTime.setVisibility(View.GONE);
+                        climbTimeET.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        climbTime.setVisibility(View.GONE);
+                        climbTimeET.setVisibility(View.VISIBLE);
+                    }
+                    if(!gear.getText().toString().equals("Need Data")){
+                        gearsCB.setChecked((gear.getText().toString().equals("true")));
+                        gear.setVisibility(View.GONE);
+                        gearsCB.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        gear.setVisibility(View.GONE);
+                        gearsCB.setVisibility(View.VISIBLE);
+                    }
+                    if(!shoot.getText().toString().equals("Need Data")){
+                        shootCB.setChecked((shoot.getText().toString().equals("true")));
+                        shoot.setVisibility(View.GONE);
+                        shootCB.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        shoot.setVisibility(View.GONE);
+                        shootCB.setVisibility(View.VISIBLE);
+                    }
+                    if(!climb.getText().toString().equals("Need Data")){
+                        climbCB.setChecked((climb.getText().toString().equals("true")));
+                        climb.setVisibility(View.GONE);
+                        climbCB.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        climb.setVisibility(View.GONE);
+                        climbCB.setVisibility(View.VISIBLE);
+                    }
+                    if(!defense.getText().toString().equals("Need Data")){
+                        defendCB.setChecked((defense.getText().toString().equals("true")));
+                        defense.setVisibility(View.GONE);
+                        defendCB.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        defense.setVisibility(View.GONE);
+                        defendCB.setVisibility(View.VISIBLE);
                     }
                     if(!comments.getText().toString().equals("Need Data")){
                         commentsET.setText(comments.getText());
@@ -202,6 +268,7 @@ public class TeamPage extends AppCompatActivity {
                         comments.setVisibility(View.GONE);
                         commentsET.setVisibility(View.VISIBLE);
                     }
+
                     isScouted.setVisibility(View.VISIBLE);
                     inEdit=true;
                 }
@@ -288,18 +355,24 @@ public class TeamPage extends AppCompatActivity {
         commentsET = (EditText) findViewById(R.id.commentsET);
 
         gearsCB = (CheckBox) findViewById(R.id.gearsCB);
+        gear = (TextView) findViewById(R.id.gears);
 
         shootCB = (CheckBox) findViewById(R.id.shootCB);
+        shoot = (TextView) findViewById(R.id.shoot);
+
         fps = (TextView) findViewById(R.id.shootSpeed);
         fpsET = (EditText) findViewById(R.id.shootSpeedET);
         accuracy = (TextView) findViewById(R.id.accuracy);
         accuracyET = (EditText) findViewById(R.id.accuracyET);
 
         climbCB = (CheckBox) findViewById(R.id.climbCB);
+        climb = (TextView) findViewById(R.id.climb);
+
         climbTime = (TextView) findViewById(R.id.climbTime);
         climbTimeET = (EditText) findViewById(R.id.climbET);
 
         defendCB = (CheckBox) findViewById(R.id.defendCB);
+        defense = (TextView) findViewById(R.id.defend);
 
         hopper = (TextView) findViewById(R.id.hopper);
         hopperET = (EditText) findViewById(R.id.hopperET);
@@ -315,15 +388,16 @@ public class TeamPage extends AppCompatActivity {
                             String robotName = robot.getRobotName();
                             String robotComments = robot.getRobotComments();
                             String robotProgramingEnvironment = robot.getRobotProgramingEnvironment();
-                            String robotFPS;
-                            String robotAaccuracy;
-                            String robotClimbTime;
-                            String robotHopper;
+                            String robotFPS = robot.getFps();
+                            String robotAccuracy = robot.getAccuracy();
+                            String robotClimbTime = robot.getClimbTime();
+                            String robotHopper = robot.getHopper();
                             Boolean isTeamScouted = robot.getIsScouted();
                             Boolean robotHasVision = robot.getRobotHasVision();
-                            Boolean robotCanGear;
-                            Boolean robotCanClimb;
-                            Boolean robotCanShoot;
+                            Boolean robotCanGear = robot.getGear();
+                            Boolean robotCanClimb = robot.getClimb();
+                            Boolean robotCanShoot = robot.getShoot();
+                            Boolean robotDefense = robot.getDefend();
                             String robotSpeed = robot.getSpeed();
                             teamNumber = dataSnapshot.getKey();
                             int robotNumberOfMotors = robot.getRobotNumberOfMotors();
@@ -395,6 +469,78 @@ public class TeamPage extends AppCompatActivity {
                                 vision.setVisibility(View.VISIBLE);
                                 visionCB.setVisibility(View.GONE);
                             }
+                            if(robotAccuracy==null || robotAccuracy.equals("")){
+                                accuracy.setText("Need Data");
+                                accuracy.setVisibility(View.VISIBLE);
+                                accuracyET.setVisibility(View.GONE);
+                            }else{
+                                accuracy.setText(robotAccuracy);
+                                accuracy.setVisibility(View.VISIBLE);
+                                accuracyET.setVisibility(View.GONE);
+                            }
+                            if(robotClimbTime==null || robotClimbTime.equals("")){
+                                climbTime.setText("Need Data");
+                                climbTime.setVisibility(View.VISIBLE);
+                                climbTimeET.setVisibility(View.GONE);
+                            }else{
+                                climbTime.setText(robotAccuracy);
+                                climbTime.setVisibility(View.VISIBLE);
+                                climbTimeET.setVisibility(View.GONE);
+                            }
+                            if(robotFPS==null || robotFPS.equals("")){
+                                fps.setText("Need Data");
+                                fps.setVisibility(View.VISIBLE);
+                                fpsET.setVisibility(View.GONE);
+                            }else{
+                                fps.setText(robotAccuracy);
+                                fps.setVisibility(View.VISIBLE);
+                                fpsET.setVisibility(View.GONE);
+                            }
+                            if(robotHopper==null || robotHopper.equals("")){
+                                hopper.setText("Need Data");
+                                hopper.setVisibility(View.VISIBLE);
+                                hopperET.setVisibility(View.GONE);
+                            }else{
+                                hopper.setText(robotAccuracy);
+                                hopper.setVisibility(View.VISIBLE);
+                                hopperET.setVisibility(View.GONE);
+                            }
+                            if(robotCanClimb==null){
+                                climb.setText("Need Data");
+                                climb.setVisibility(View.VISIBLE);
+                                climbCB.setVisibility(View.GONE);
+                            }else{
+                                climb.setText(robotCanClimb+"");
+                                climb.setVisibility(View.VISIBLE);
+                                climbCB.setVisibility(View.GONE);
+                            }
+                            if(robotCanGear==null){
+                                gear.setText("Need Data");
+                                gear.setVisibility(View.VISIBLE);
+                                gearsCB.setVisibility(View.GONE);
+                            }else{
+                                gear.setText(robotCanGear+"");
+                                gear.setVisibility(View.VISIBLE);
+                                gearsCB.setVisibility(View.GONE);
+                            }
+                            if(robotCanShoot==null){
+                                shoot.setText("Need Data");
+                                shoot.setVisibility(View.VISIBLE);
+                                shootCB.setVisibility(View.GONE);
+                            }else{
+                                shoot.setText(robotCanShoot+"");
+                                shoot.setVisibility(View.VISIBLE);
+                                shootCB.setVisibility(View.GONE);
+                            }
+                            if(robotDefense==null){
+                                defense.setText("Need Data");
+                                defense.setVisibility(View.VISIBLE);
+                                defendCB.setVisibility(View.GONE);
+                            }else{
+                                defense.setText(robotDefense+"");
+                                defense.setVisibility(View.VISIBLE);
+                                defendCB.setVisibility(View.GONE);
+                            }
                         }
                         else{
                             isScouted.setChecked(false);
@@ -421,7 +567,6 @@ public class TeamPage extends AppCompatActivity {
                             vision.setVisibility(View.VISIBLE);
                             visionCB.setVisibility(View.GONE);
                         }
-
                     }
 
                     @Override
