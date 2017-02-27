@@ -30,15 +30,15 @@ public class Intro extends IntroActivity {
                 .build());
         addSlide(new SimpleSlide.Builder()
                 .title("How it Works")
-                .description("Events for this season are automaticaly imported and arranged by date.")
+                .description("Events for this season are automatically imported and arranged by date.")
                 .image(R.drawable.blank_cards)
                 .background(R.color.purple)
                 .backgroundDark(R.color.purpleDark)
                 .build());
         addSlide(new SimpleSlide.Builder()
-                .title("Roles")
+                .title("Event Dashboard")
                 .image(R.drawable.demo_cards)
-                .description("Scouts, drive team, and regular members are all presented with a different console.")
+                .description("Each event has a page that includes your current stats, as well as all upcoming and past matches.")
                 .background(R.color.redAlt)
                 .backgroundDark(R.color.redDarkAlt)
                 .build());

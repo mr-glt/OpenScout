@@ -43,9 +43,6 @@ public class SetupFragment extends SlideFragment {
     View root;
     TextView teamSetup;
     TextView teamUp;
-    RadioButton scoutBtn;
-    RadioButton driveBtn;
-    RadioGroup btnGroup;
     SharedPreferences prefs;
     ProgressBar pv;
     ArrayList<Event> events = new ArrayList<Event>();
@@ -67,15 +64,12 @@ public class SetupFragment extends SlideFragment {
         teamUp = (TextView) root.findViewById(R.id.upEvents);
         teamNumber = (EditText) root.findViewById(R.id.teamnumber);
         save = (Button) root.findViewById(R.id.save);
-        scoutBtn = (RadioButton) root.findViewById(R.id.radio_scout);
-        driveBtn = (RadioButton) root.findViewById(R.id.radio_drive);
-        btnGroup = (RadioGroup) root.findViewById(R.id.radioGroup);
         pv = (ProgressBar) root.findViewById(R.id.pv);
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!teamNumber.getText().toString().equals("") && (scoutBtn.isChecked() || driveBtn.isChecked())){
+                if(!teamNumber.getText().toString().equals("")){
                     pv.setVisibility(View.VISIBLE);
 
                     final ApiInterface apiService =
@@ -105,17 +99,10 @@ public class SetupFragment extends SlideFragment {
                     save.setVisibility(View.GONE);
                     teamNumber.setVisibility(View.GONE);
                     teamSetup.setVisibility(View.GONE);
-                    btnGroup.setVisibility(View.GONE);
                     teamUp.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.VISIBLE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("teamNumber", teamNumber.getText().toString());
-                    if (scoutBtn.isChecked()){
-                        editor.putString("example_list", "scout");
-                    }
-                    if (driveBtn.isChecked()){
-                        editor.putString("example_list", "driver");
-                    }
                     editor.putBoolean("showIntro", false);
                     editor.apply();
                 }

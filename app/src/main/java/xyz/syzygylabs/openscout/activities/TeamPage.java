@@ -43,6 +43,7 @@ import xyz.syzygylabs.openscout.R;
 import xyz.syzygylabs.openscout.adapter.EventStatsRecycler;
 import xyz.syzygylabs.openscout.api.ApiClient;
 import xyz.syzygylabs.openscout.api.ApiInterface;
+import xyz.syzygylabs.openscout.helpers.RecyclerItemClickListener;
 import xyz.syzygylabs.openscout.objects.Robot;
 import xyz.syzygylabs.openscout.objects.TeamNoRobot;
 import xyz.syzygylabs.openscout.objects.TeamStat;
@@ -653,6 +654,16 @@ public class TeamPage extends AppCompatActivity {
                                 recyclerViewThis.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                                 recyclerViewThis.setAdapter(new EventStatsRecycler(statsThisYear));
                                 recyclerViewThis.setNestedScrollingEnabled(false);
+                                RecyclerItemClickListener rvListener = new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                                    @Override public void onItemClick(View view, int position) {
+                                        Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
+                                        myIntent.putExtra("event", eventNamesThis.get(position));
+                                        myIntent.putExtra("eventName", teamEventsThis.get(position));
+                                        myIntent.putExtra("showWelcome", false);
+                                        getBaseContext().startActivity(myIntent);
+                                    }
+                                });
+                                recyclerViewThis.addOnItemTouchListener(rvListener);
                             }
                         }
 

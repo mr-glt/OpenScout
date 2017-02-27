@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.baoyz.widget.PullRefreshLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,7 +79,6 @@ public class DriveTeam extends AppCompatActivity {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         Call<List<Match>> call = apiService.getMatches("frc" + teamNumber,"2017" + (eventKey.substring(4)));
-        //TODO update for 2017
         call.enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, final Response<List<Match>> response) {
@@ -97,6 +97,7 @@ public class DriveTeam extends AppCompatActivity {
                         }
                     });
                     recyclerView.addOnItemTouchListener(rvListener);
+                    recyclerView.setNestedScrollingEnabled(true);
                     layout.setRefreshing(false);
                 }
 
@@ -160,5 +161,19 @@ public class DriveTeam extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public void loadScouting(View view) {
+        Intent myIntent = new Intent(getBaseContext(), Scout.class);
+        myIntent.putExtra("event", eventKey);
+        myIntent.putExtra("eventName", eventName);
+        myIntent.putExtra("showWelcome", false);
+        getBaseContext().startActivity(myIntent);
+    }
+    public void showInfo(View v){
+        MaterialDialog warning = new MaterialDialog.Builder(this)
+                .title("Stat Info")
+                .customView(R.layout.stat_info, true)
+                .positiveText("Ok")
+                .show();
     }
 }

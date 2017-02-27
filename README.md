@@ -1,19 +1,19 @@
 #OpenScout
 
-**OpenScout** is an Android app that provides an end to end scouting solution for teams competing in the *FIRST* Robotics competition. It leverages the Free-Tier of Google Firebase to provide a real time connection between scout and drive teams, while providing an easy-to-deploy database so that any team can run their own.
+**OpenScout** is an Android app that provides an end to end scouting solution for teams competing in the *FIRST* Robotics competition. It leverages the Free-Tier of Google Firebase to provide a real time connection between scout and drive teams, while providing an easy-to-deploy database so that any team can run their own. The app combines your teams database with The Blue Alliance to organize and present contextually valuable information.
 <br>
 <img src="https://raw.githubusercontent.com/mr-glt/OpenScout/master/Art/Screenshots/login.png" width="275"/>
-<img src="https://raw.githubusercontent.com/mr-glt/OpenScout/master/Art/Screenshots/driver.png" width="275"/>
-<img src="https://raw.githubusercontent.com/mr-glt/OpenScout/master/Art/Screenshots/team.png" width="275"/>
+<img src="http://i.imgur.com/yLH1MvK.png" width="275"/>
+<img src="http://i.imgur.com/UIUF0aI.png" width="275"/>
 ## Disclaimer
-*This app is currently under active development. The framework of the app is implemented, however, data related to the 2017 game will be implemented after kick-off and throughout the season.*
+*This app is currently working for the 2017 season.*
 
 ##How to Clone, Build and Deploy
-*A better guide will be released closer to the end of build season*
 ###Android App
 1. Download and install <a target="blank" href="https://developer.android.com/studio/index.html">Android Studio</a>
 2. Clone repository.
 3. Open the root of the repository in Android Studio.
+
 ###Firebase
 1. Create a Google Account.
 2. Visit your <a target="blank" href="https://console.firebase.google.com/?pli=1">Firebase Console</a>.

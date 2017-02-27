@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Boolean> todayEvent = new ArrayList<Boolean>();
     private ArrayList<Event> events = new ArrayList<Event>();
 
-    //Objects
-    private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences prefs;
     private RecyclerView recyclerView;
     PullRefreshLayout layout;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Firebase
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         //Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -138,22 +136,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 for(int i=0;i<todayEvent.size();i++){
                     if(todayEvent.get(i)){
-                        String userType = prefs.getString("example_list", "scout");
-                        if(userType.equals("scout") || userType.equals("team")){
-                            Intent myIntent = new Intent(getBaseContext(), Scout.class);
-                            myIntent.putExtra("event", events.get(i).getEventKeys());
-                            myIntent.putExtra("eventName", events.get(i).getEventName());
-                            myIntent.putExtra("showWelcome", false);
-                            getBaseContext().startActivity(myIntent);
-                        }
-                        if(userType.equals("driver")){
                             Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
                             myIntent.putExtra("event", events.get(i).getEventKeys());
                             myIntent.putExtra("eventName", events.get(i).getEventName());
                             myIntent.putExtra("showWelcome", true);
                             getBaseContext().startActivity(myIntent);
-                        }
-
                     }
                 }
 
@@ -161,23 +148,12 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 recyclerView.setAdapter(new EventsRecycler(events));
                 RecyclerItemClickListener rvListener = new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        String userType = prefs.getString("example_list", "scout");
-                        if(userType.equals("scout") || userType.equals("team")){
-                            Intent myIntent = new Intent(getBaseContext(), Scout.class);
-                            myIntent.putExtra("event", events.get(position).getEventKeys());
-                            myIntent.putExtra("eventName", events.get(position).getEventName());
-                            myIntent.putExtra("showWelcome", false);
-                            getBaseContext().startActivity(myIntent);
-                        }
-                        if(userType.equals("driver")){
-                            Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
-                            myIntent.putExtra("event", events.get(position).getEventKeys());
-                            Log.e("2017Z", events.get(position).getEventKeys());
-                            myIntent.putExtra("eventName", events.get(position).getEventName());
-                            myIntent.putExtra("showWelcome", false);
-                            getBaseContext().startActivity(myIntent);
-                        }
+                @Override public void onItemClick(View view, int position) {
+                        Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
+                        myIntent.putExtra("event", events.get(position).getEventKeys());
+                        myIntent.putExtra("eventName", events.get(position).getEventName());
+                        myIntent.putExtra("showWelcome", false);
+                        getBaseContext().startActivity(myIntent);
                     }
                 });
                 recyclerView.addOnItemTouchListener(rvListener);

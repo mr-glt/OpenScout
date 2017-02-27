@@ -32,25 +32,6 @@
             android:layout_marginTop="30dp"
             android:inputType="number"
             android:id="@+id/teamnumber"/>
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/radioGroup">
-            <RadioButton android:id="@+id/radio_scout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Scout"
-                android:textColor="#FFFFFF"
-                android:buttonTint="#FFFFFF"/>
-            <RadioButton android:id="@+id/radio_drive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Drive Team"
-                android:textColor="#FFFFFF"
-                android:buttonTint="#FFFFFF"/>
-        </RadioGroup>
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
