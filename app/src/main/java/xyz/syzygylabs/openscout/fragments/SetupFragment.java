@@ -1,5 +1,6 @@
 package xyz.syzygylabs.openscout.fragments;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,6 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.syzygylabs.openscout.R;
+import xyz.syzygylabs.openscout.activities.MainActivity;
 import xyz.syzygylabs.openscout.adapter.EventsRecycler;
 import xyz.syzygylabs.openscout.api.ApiClient;
 import xyz.syzygylabs.openscout.api.ApiInterface;
@@ -120,6 +122,8 @@ public class SetupFragment extends SlideFragment {
     @Override
     public void onDestroy() {
         //loginHandler.removeCallbacks(loginRunnable);
+        Intent myIntent = new Intent(getContext(), MainActivity.class);
+        getContext().startActivity(myIntent);
         super.onDestroy();
     }
 
