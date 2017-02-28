@@ -82,7 +82,6 @@ public class TeamPage extends AppCompatActivity {
         setContentView(R.layout.activity_team_page);
         Intent intent = getIntent();
         teamNumber = intent.getStringExtra("teamNum");
-
         load();
 
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -345,6 +344,7 @@ public class TeamPage extends AppCompatActivity {
         final ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.keepSynced(true);
         type = (TextView) findViewById(R.id.RobotType);
         typeET = (EditText) findViewById(R.id.typeET);
 
