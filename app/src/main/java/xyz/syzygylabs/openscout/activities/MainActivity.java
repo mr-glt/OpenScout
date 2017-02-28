@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private RecyclerView recyclerView;
     PullRefreshLayout layout;
+
     //Strings
     private String teamNumber;
 
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        load(); //Load
+        load();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -162,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<TeamEvents>> call, Throwable t) {
-
+                Snackbar.make(findViewById(android.R.id.content), "Error getting data", Snackbar.LENGTH_LONG)
+                        .show();
             }
         });
     }

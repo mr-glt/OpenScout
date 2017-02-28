@@ -35,10 +35,8 @@ import xyz.syzygylabs.openscout.helpers.RecyclerItemClickListener;
 import xyz.syzygylabs.openscout.objects.match.Match;
 
 public class DriveTeam extends AppCompatActivity {
-    String eventName;
+    String eventName, eventKey, teamNumber;
     RecyclerView recyclerView;
-    String teamNumber;
-    String eventKey;
     SharedPreferences prefs;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -100,13 +98,12 @@ public class DriveTeam extends AppCompatActivity {
                     recyclerView.setNestedScrollingEnabled(true);
                     layout.setRefreshing(false);
                 }
-
-
             }
 
             @Override
             public void onFailure(Call<List<Match>> call, Throwable t) {
-
+                Snackbar.make(findViewById(android.R.id.content), "Error getting data", Snackbar.LENGTH_LONG)
+                        .show();
             }
         });
         Call<JsonElement> eventData = apiService.getEventStats("2017" + (eventKey.substring(4)));
@@ -138,7 +135,8 @@ public class DriveTeam extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<JsonElement> call, Throwable t) {
-
+                Snackbar.make(findViewById(android.R.id.content), "Error getting data", Snackbar.LENGTH_LONG)
+                        .show();
             }
         });
     }
@@ -171,9 +169,9 @@ public class DriveTeam extends AppCompatActivity {
     }
     public void showInfo(View v){
         MaterialDialog warning = new MaterialDialog.Builder(this)
-                .title("Stat Info")
-                .customView(R.layout.stat_info, true)
-                .positiveText("Ok")
-                .show();
+            .title("Stat Info")
+            .customView(R.layout.stat_info, true)
+            .positiveText("Ok")
+            .show();
     }
 }

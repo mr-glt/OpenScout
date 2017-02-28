@@ -49,13 +49,10 @@ public class Login extends AppCompatActivity implements
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
     MaterialLoginView login;
-    // [START declare_auth]
-    private FirebaseAuth mAuth;
-    // [END declare_auth]
 
-    // [START declare_auth_litener]
+    private FirebaseAuth mAuth;
+
     private FirebaseAuth.AuthStateListener mAuthListener;
-    // [END declare_auth_listener]
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -70,48 +67,30 @@ public class Login extends AppCompatActivity implements
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
 
-        // [START config_signin]
-        // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        // [END config_signin]
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .enableAutoManage(this, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
 
-        // [START auth_state_listener]
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
                     login.setVisibility(View.GONE);
                 } else {
-                    // User is signed out
-                    //revokeAccess();
                 }
 
                 updateUI(user);
-
-                // [START_EXCLUDE]
-
-                // [END_EXCLUDE]
             }
         };
-        // [END auth_state_listener]
-
-        /*
-
-                */
 
         ((DefaultLoginView)login.getLoginView()).setListener(new DefaultLoginView.DefaultLoginViewListener() {
             @Override
@@ -166,15 +145,12 @@ public class Login extends AppCompatActivity implements
         });
     }
 
-    // [START on_start_add_listener]
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
-    // [END on_start_add_listener]
 
-    // [START on_stop_remove_listener]
     @Override
     public void onStop() {
         super.onStop();
@@ -182,36 +158,25 @@ public class Login extends AppCompatActivity implements
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-    // [END on_stop_remove_listener]
 
-    // [START onactivityresult]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
-                // Google Sign In failed, update UI appropriately
-                // [START_EXCLUDE]
                 updateUI(null);
-                // [END_EXCLUDE]
             }
         }
     }
-    // [END onactivityresult]
 
-    // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        // [START_EXCLUDE silent]
         showProgressDialog();
-        // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -220,34 +185,24 @@ public class Login extends AppCompatActivity implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(Login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        // [START_EXCLUDE]
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
     }
-    // [END auth_with_google]
 
-    // [START signin]
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    // [END signin]
 
     public void signOut() {
-        // Firebase sign out
         mAuth.signOut();
 
-        // Google sign out
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
@@ -289,8 +244,6 @@ public class Login extends AppCompatActivity implements
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
-        // be available.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
@@ -319,32 +272,17 @@ public class Login extends AppCompatActivity implements
     }
     public void makeUser(String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        /*
-                        user.sendEmailVerification()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.d(TAG, "Email sent.");
-                                        }
-                                    }
-                                });
-                        */
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Snackbar snackbar = Snackbar
-                                    .make(findViewById(android.R.id.content), "Account Creation Failed", Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                        }
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (!task.isSuccessful()) {
+                        Snackbar snackbar = Snackbar
+                                .make(findViewById(android.R.id.content), "Account Creation Failed", Snackbar.LENGTH_LONG);
+                        snackbar.show();
                     }
-                });
-
+                }
+            });
     }
     public void emailLogin(String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)
@@ -353,18 +291,12 @@ public class Login extends AppCompatActivity implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
                             Snackbar snackbar = Snackbar
                                     .make(findViewById(android.R.id.content), "Login Failed. Make Sure Username and Password are Correct.", Snackbar.LENGTH_LONG);
                             snackbar.show();
                         }
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
     }
@@ -377,29 +309,29 @@ public class Login extends AppCompatActivity implements
         boolean wrapInScrollView = true;
         //sendID = pokemonId;
         MaterialDialog warning = new MaterialDialog.Builder(this)
-                .title("Reset Password")
-                .customView(R.layout.password_reset, wrapInScrollView)
-                .positiveText("Submit")
-                .negativeText("Cancel")
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog warning, @NonNull DialogAction which) {
-                        FirebaseAuth auth = FirebaseAuth.getInstance();
-                        EditText notes = (EditText) warning.getCustomView().findViewById(R.id.email);
-                        auth.sendPasswordResetEmail(notes.getText().toString())
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.d(TAG, "Email sent.");
-                                            Snackbar snackbar = Snackbar
-                                                    .make(findViewById(android.R.id.content), "Email Sent.", Snackbar.LENGTH_LONG);
-                                            snackbar.show();
-                                        }
+            .title("Reset Password")
+            .customView(R.layout.password_reset, wrapInScrollView)
+            .positiveText("Submit")
+            .negativeText("Cancel")
+            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog warning, @NonNull DialogAction which) {
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    EditText notes = (EditText) warning.getCustomView().findViewById(R.id.email);
+                    auth.sendPasswordResetEmail(notes.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "Email sent.");
+                                        Snackbar snackbar = Snackbar
+                                                .make(findViewById(android.R.id.content), "Email Sent.", Snackbar.LENGTH_LONG);
+                                        snackbar.show();
                                     }
-                                });
-                    }
-                })
-                .show();
+                                }
+                            });
+                }
+            })
+            .show();
     }
 }

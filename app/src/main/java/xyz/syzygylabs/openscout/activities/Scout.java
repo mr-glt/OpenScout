@@ -45,10 +45,9 @@ public class Scout extends AppCompatActivity {
     RecyclerView recyclerView;
     ProgressWheel bar;
 
-    int val = 0;
-    String teamNumber;
-    String id;
-    String eventName;
+    int j = 0;
+    String teamNumber, id, eventName;
+
     PullRefreshLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,9 +131,9 @@ public class Scout extends AppCompatActivity {
 
     void get(final Response<List<TeamNoRobot>> response){
 
-        bar.setInstantProgress((float)((double)val/(double)response.body().size()));
+        bar.setInstantProgress((float)((double)j/(double)response.body().size()));
 
-        mDatabase.child("teams").child(String.valueOf(response.body().get(val).getTeamNumber())).addListenerForSingleValueEvent(
+        mDatabase.child("teams").child(String.valueOf(response.body().get(j).getTeamNumber())).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -160,12 +159,12 @@ public class Scout extends AppCompatActivity {
                             teamNumber = dataSnapshot.getKey();
                             int robotNumberOfMotors = robot.getRobotNumberOfMotors();
 
-                            teams.add(new Team(response.body().get(val).getNickname(), response.body().get(val).getName(),
-                                    response.body().get(val).getTeamNumber()+"", response.body().get(val).getLocation(),
-                                    response.body().get(val).getLocality(),response.body().get(val).getRegion(),
-                                    response.body().get(val).getCountryName(),response.body().get(val).getKey(),
-                                    response.body().get(val).getMotto(),response.body().get(val).getWebsite(),
-                                    response.body().get(val).getRookieYear()+"", new Robot((robotName != null) ? robotName : "NA", (robotType != null) ? robotType : "NA", (robotDriveTrain != null) ? robotDriveTrain : "NA",
+                            teams.add(new Team(response.body().get(j).getNickname(), response.body().get(j).getName(),
+                                    response.body().get(j).getTeamNumber()+"", response.body().get(j).getLocation(),
+                                    response.body().get(j).getLocality(),response.body().get(j).getRegion(),
+                                    response.body().get(j).getCountryName(),response.body().get(j).getKey(),
+                                    response.body().get(j).getMotto(),response.body().get(j).getWebsite(),
+                                    response.body().get(j).getRookieYear()+"", new Robot((robotName != null) ? robotName : "NA", (robotType != null) ? robotType : "NA", (robotDriveTrain != null) ? robotDriveTrain : "NA",
                                     (robotNumberOfMotors != 0) ? robotNumberOfMotors : 0, (robotComments != null) ? robotComments : "NA", (robotHasVision != null) ? robotHasVision : false,
                                     (robotProgramingEnvironment != null) ? robotProgramingEnvironment : "NA", (isTeamScouted != null) ? isTeamScouted : false, (robotSpeed != null) ? robotSpeed : "NA",
                                     (robotFPS != null) ? robotFPS : "NA", (robotAccuracy != null) ? robotAccuracy : "NA",(robotClimbTime != null) ? robotClimbTime : "NA",
@@ -173,16 +172,16 @@ public class Scout extends AppCompatActivity {
                                     (robotCanClimb != null) ? robotCanClimb : false,(robotDefense != null) ? robotDefense : false)));
                         }
                         else{
-                            teams.add(new Team(response.body().get(val).getNickname(), response.body().get(val).getName(),
-                                    response.body().get(val).getTeamNumber()+"", response.body().get(val).getLocation(),
-                                    response.body().get(val).getLocality(),response.body().get(val).getRegion(),
-                                    response.body().get(val).getCountryName(),response.body().get(val).getKey(),
-                                    response.body().get(val).getMotto(),response.body().get(val).getWebsite(),
-                                    response.body().get(val).getRookieYear()+"", new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA", "NA", "NA", "NA", "NA", false,false,false,false)));
+                            teams.add(new Team(response.body().get(j).getNickname(), response.body().get(j).getName(),
+                                    response.body().get(j).getTeamNumber()+"", response.body().get(j).getLocation(),
+                                    response.body().get(j).getLocality(),response.body().get(j).getRegion(),
+                                    response.body().get(j).getCountryName(),response.body().get(j).getKey(),
+                                    response.body().get(j).getMotto(),response.body().get(j).getWebsite(),
+                                    response.body().get(j).getRookieYear()+"", new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA", "NA", "NA", "NA", "NA", false,false,false,false)));
                         }
 
-                        if (val+1>=response.body().size()){
-                            val=0;
+                        if (j+1>=response.body().size()){
+                            j=0;
                             Collections.sort(teams, new Comparator<Team>() {
                                 @Override
                                 public int compare(Team teams, Team t1) {
@@ -208,7 +207,7 @@ public class Scout extends AppCompatActivity {
                             recyclerView.addOnItemTouchListener(rvListener);
                             layout.setRefreshing(false);
                         }else{
-                            val++;
+                            j++;
                             get(response);
                         }
                     }

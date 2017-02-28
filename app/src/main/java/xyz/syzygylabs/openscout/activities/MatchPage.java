@@ -52,24 +52,12 @@ public class MatchPage extends AppCompatActivity {
     List<String> redTeams;
     List<String> blueTeams;
     ApiInterface apiService;
-    RecyclerView recyclerView;
-    RecyclerView recyclerViewBlue;
-    TextView matchName;
-    TextView matchLevel;
-    TextView red1;
-    TextView red2;
-    TextView red3;
-    TextView red4;
-    TextView blue1;
-    TextView blue2;
-    TextView blue3;
-    TextView blue4;
-    TextView blueScoreTV;
-    TextView redScoreTV;
-    ProgressWheel wheelRed;
-    ProgressWheel wheelBlue;
-    int val=0;
+    RecyclerView recyclerView, recyclerViewBlue;
+    TextView matchName, matchLevel, red1, red2, red3, red4, blue1, blue2, blue3, blue4, blueScoreTV, redScoreTV;
+    ProgressWheel wheelRed, wheelBlue;
+    int j=0;
     DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,7 +171,7 @@ public class MatchPage extends AppCompatActivity {
     }
     void get(){
         /*Team info calls*/
-        Call<TeamNoRobot> teamInfoCallRed = apiService.getTeam(redTeams.get(val));
+        Call<TeamNoRobot> teamInfoCallRed = apiService.getTeam(redTeams.get(j));
         teamInfoCallRed.enqueue(new Callback<TeamNoRobot>() {
             @Override
             public void onResponse(Call<TeamNoRobot> call, Response<TeamNoRobot> response) {
@@ -199,9 +187,9 @@ public class MatchPage extends AppCompatActivity {
                             JsonObject oprs_ = (JsonObject) response.body().getAsJsonObject().get("oprs");
                             JsonObject ccwms_ = (JsonObject) response.body().getAsJsonObject().get("ccwms");
                             JsonObject dprs_ = (JsonObject) response.body().getAsJsonObject().get("dprs");
-                            statsRed.add(new TeamStat("NA", oprs_.get(redTeams.get(val).substring(3)).toString().substring(0,4),
-                                    ccwms_.get(redTeams.get(val).substring(3)).toString().substring(0,4), dprs_.get(redTeams.get(val).substring(3)).toString().substring(0,4)));
-                            mDatabase.child("teams").child(redTeams.get(val).substring(3)).addListenerForSingleValueEvent(
+                            statsRed.add(new TeamStat("NA", oprs_.get(redTeams.get(j).substring(3)).toString().substring(0,4),
+                                    ccwms_.get(redTeams.get(j).substring(3)).toString().substring(0,4), dprs_.get(redTeams.get(j).substring(3)).toString().substring(0,4)));
+                            mDatabase.child("teams").child(redTeams.get(j).substring(3)).addListenerForSingleValueEvent(
                                     new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -234,12 +222,12 @@ public class MatchPage extends AppCompatActivity {
                                             } else {
                                                 robotsRed.add(new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA", "NA", "NA", "NA", "NA", false,false,false,false));
                                             }
-                                            matchTeamInfosRed.add(new MatchTeamInfo(teamInfoRed.get(val), statsRed.get(val), robotsRed.get(val)));
-                                            if(val+1>=redTeams.size()){
-                                                val=0;
+                                            matchTeamInfosRed.add(new MatchTeamInfo(teamInfoRed.get(j), statsRed.get(j), robotsRed.get(j)));
+                                            if(j+1>=redTeams.size()){
+                                                j=0;
                                                 getBlue();
                                             }else{
-                                                val++;
+                                                j++;
                                                 get();
                                             }
                                         }
@@ -269,7 +257,7 @@ public class MatchPage extends AppCompatActivity {
         });
     }
     void getBlue(){
-        Call<TeamNoRobot> teamInfoCallBlue = apiService.getTeam(blueTeams.get(val));
+        Call<TeamNoRobot> teamInfoCallBlue = apiService.getTeam(blueTeams.get(j));
         teamInfoCallBlue.enqueue(new Callback<TeamNoRobot>() {
             @Override
             public void onResponse(Call<TeamNoRobot> call, Response<TeamNoRobot> response) {
@@ -285,9 +273,9 @@ public class MatchPage extends AppCompatActivity {
                             JsonObject oprs_ = (JsonObject) response.body().getAsJsonObject().get("oprs");
                             JsonObject ccwms_ = (JsonObject) response.body().getAsJsonObject().get("ccwms");
                             JsonObject dprs_ = (JsonObject) response.body().getAsJsonObject().get("dprs");
-                            statsBlue.add(new TeamStat("NA", oprs_.get(blueTeams.get(val).substring(3)).toString().substring(0,4),
-                                    ccwms_.get(blueTeams.get(val).substring(3)).toString().substring(0,4), dprs_.get(blueTeams.get(val).substring(3)).toString().substring(0,4)));
-                            mDatabase.child("teams").child(blueTeams.get(val)).addListenerForSingleValueEvent(
+                            statsBlue.add(new TeamStat("NA", oprs_.get(blueTeams.get(j).substring(3)).toString().substring(0,4),
+                                    ccwms_.get(blueTeams.get(j).substring(3)).toString().substring(0,4), dprs_.get(blueTeams.get(j).substring(3)).toString().substring(0,4)));
+                            mDatabase.child("teams").child(blueTeams.get(j)).addListenerForSingleValueEvent(
                                     new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -320,9 +308,9 @@ public class MatchPage extends AppCompatActivity {
                                             } else {
                                                 robotsBlue.add(new Robot("NA", "NA", "NA", 0, "NA", false, "NA", false, "NA", "NA", "NA", "NA", "NA", false,false,false,false));
                                             }
-                                            matchTeamInfosBlue.add(new MatchTeamInfo(teamInfoBlue.get(val), statsBlue.get(val), robotsBlue.get(val)));
-                                            if(val+1>=blueTeams.size()){
-                                                val=0;
+                                            matchTeamInfosBlue.add(new MatchTeamInfo(teamInfoBlue.get(j), statsBlue.get(j), robotsBlue.get(j)));
+                                            if(j+1>=blueTeams.size()){
+                                                j=0;
                                                 wheelBlue.setVisibility(View.GONE);
                                                 wheelRed.setVisibility(View.GONE);
                                                 recyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -334,7 +322,7 @@ public class MatchPage extends AppCompatActivity {
                                                 recyclerViewBlue.setAdapter(new MatchPageRecycler(matchTeamInfosBlue));
                                                 //recyclerViewBlue.setNestedScrollingEnabled(false);
                                             }else{
-                                                val++;
+                                                j++;
                                                 getBlue();
                                             }
                                         }
