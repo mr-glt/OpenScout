@@ -113,61 +113,67 @@ public class MainActivity extends AppCompatActivity {
         final ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         Call<List<TeamEvents>> fetchEvents = apiService.getEvents("frc" + teamNumber, "2017");
-        fetchEvents.enqueue(new Callback<List<TeamEvents>>() {
-            @Override
-            public void onResponse(Call<List<TeamEvents>> call, Response<List<TeamEvents>> response) {
-                ProgressWheel wheel = (ProgressWheel) findViewById(R.id.progress_wheel);
-                wheel.setVisibility(View.GONE);
-                for(int i=0; i<response.body().size(); i++){
-                    String dtStart = response.body().get(i).getStartDate();
-                    String dtEnd = response.body().get(i).getEndDate();
-                    String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-                    //String todayDate = "2017-03-30"; //Test date
-                    events.add(new Event(response.body().get(i).getName(), response.body().get(i).getKey(),
-                            response.body().get(i).getStartDate(),response.body().get(i).getEndDate() ,
-                            response.body().get(i).getLocation(),response.body().get(i).getWeek()+""));
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            fetchEvents.enqueue(new Callback<List<TeamEvents>>() {
+                @Override
+                public void onResponse(Call<List<TeamEvents>> call, Response<List<TeamEvents>> response) {
+                    ProgressWheel wheel = (ProgressWheel) findViewById(R.id.progress_wheel);
+                    wheel.setVisibility(View.GONE);
                     try {
-                        Date startDate = format.parse(dtStart);
-                        Date endDate = format.parse(dtEnd);
-                        Date today = format.parse(todayDate);
-                        todayEvent.add(startDate.compareTo(today) * today.compareTo(endDate) > 0);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
+                        for (int i = 0; i < response.body().size(); i++) {
+                            String dtStart = response.body().get(i).getStartDate();
+                            String dtEnd = response.body().get(i).getEndDate();
+                            String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                            //String todayDate = "2017-03-30"; //Test date
+                            events.add(new Event(response.body().get(i).getName(), response.body().get(i).getKey(),
+                                    response.body().get(i).getStartDate(), response.body().get(i).getEndDate(),
+                                    response.body().get(i).getLocation(), response.body().get(i).getWeek() + ""));
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                            try {
+                                Date startDate = format.parse(dtStart);
+                                Date endDate = format.parse(dtEnd);
+                                Date today = format.parse(todayDate);
+                                todayEvent.add(startDate.compareTo(today) * today.compareTo(endDate) > 0);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        for (int i = 0; i < todayEvent.size(); i++) {
+                            if (todayEvent.get(i)) {
+                                Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
+                                myIntent.putExtra("event", events.get(i).getEventKeys());
+                                myIntent.putExtra("eventName", events.get(i).getEventName());
+                                myIntent.putExtra("showWelcome", true);
+                                getBaseContext().startActivity(myIntent);
+                            }
+                        }
+                    }catch (Exception e){
+                        Snackbar.make(findViewById(android.R.id.content), "Invalid team number or no events this year", Snackbar.LENGTH_LONG)
+                                .show();
                     }
-                }
-                for(int i=0;i<todayEvent.size();i++){
-                    if(todayEvent.get(i)){
+                    recyclerView = (RecyclerView) findViewById(R.id.recycler);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    recyclerView.setAdapter(new EventsRecycler(events));
+                    RecyclerItemClickListener rvListener = new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
                             Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
-                            myIntent.putExtra("event", events.get(i).getEventKeys());
-                            myIntent.putExtra("eventName", events.get(i).getEventName());
-                            myIntent.putExtra("showWelcome", true);
+                            myIntent.putExtra("event", events.get(position).getEventKeys());
+                            myIntent.putExtra("eventName", events.get(position).getEventName());
+                            myIntent.putExtra("showWelcome", false);
                             getBaseContext().startActivity(myIntent);
-                    }
+                        }
+                    });
+                    recyclerView.addOnItemTouchListener(rvListener);
+                    layout.setRefreshing(false);
                 }
 
-                recyclerView = (RecyclerView) findViewById(R.id.recycler);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                recyclerView.setAdapter(new EventsRecycler(events));
-                RecyclerItemClickListener rvListener = new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                @Override public void onItemClick(View view, int position) {
-                        Intent myIntent = new Intent(getBaseContext(), DriveTeam.class);
-                        myIntent.putExtra("event", events.get(position).getEventKeys());
-                        myIntent.putExtra("eventName", events.get(position).getEventName());
-                        myIntent.putExtra("showWelcome", false);
-                        getBaseContext().startActivity(myIntent);
-                    }
-                });
-                recyclerView.addOnItemTouchListener(rvListener);
-                layout.setRefreshing(false);
-            }
+                @Override
+                public void onFailure(Call<List<TeamEvents>> call, Throwable t) {
+                    Snackbar.make(findViewById(android.R.id.content), "Error getting data", Snackbar.LENGTH_LONG)
+                            .show();
+                }
+            });
 
-            @Override
-            public void onFailure(Call<List<TeamEvents>> call, Throwable t) {
-                Snackbar.make(findViewById(android.R.id.content), "Error getting data", Snackbar.LENGTH_LONG)
-                        .show();
-            }
-        });
     }
 
 }
