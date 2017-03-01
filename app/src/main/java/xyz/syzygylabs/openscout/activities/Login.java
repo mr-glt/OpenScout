@@ -61,12 +61,10 @@ public class Login extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         login = (MaterialLoginView) findViewById(R.id.login);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()

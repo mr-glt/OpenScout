@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:text="Robot Type:"
+                    android:text="Volume Type:"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/typeLabel"
@@ -128,7 +128,7 @@
                     android:layout_marginStart="16dp"
                     android:visibility="visible"/>
                 <EditText
-                    android:hint="short, tall, agile..."
+                    android:hint="36x40x24 or 30x32x36"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/typeET"

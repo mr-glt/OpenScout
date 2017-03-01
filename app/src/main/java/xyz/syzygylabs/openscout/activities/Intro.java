@@ -22,8 +22,8 @@ public class Intro extends IntroActivity {
         super.onCreate(savedInstanceState);
         setSkipEnabled(false);
         addSlide(new SimpleSlide.Builder()
-                .title("Open Scout")
-                .description("Open Source Scouting for FRC")
+                .title("Open Scout Public")
+                .description("Open Source Scouting. This is a public database and not subject to moderation.")
                 .image(R.drawable.logo)
                 .background(R.color.green)
                 .backgroundDark(R.color.greenDark)
