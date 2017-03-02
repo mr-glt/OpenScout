@@ -91,6 +91,7 @@ public class DriveTeam extends AppCompatActivity {
                         @Override public void onItemClick(View view, int position) {
                             Intent myIntent = new Intent(getBaseContext(), MatchPage.class);
                             myIntent.putExtra("key", response.body().get(position).getKey());
+                            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             getBaseContext().startActivity(myIntent);
                         }
                     });

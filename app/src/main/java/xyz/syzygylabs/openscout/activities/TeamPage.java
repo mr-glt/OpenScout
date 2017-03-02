@@ -660,6 +660,7 @@ public class TeamPage extends AppCompatActivity {
                                         myIntent.putExtra("event", eventNamesThis.get(position));
                                         myIntent.putExtra("eventName", teamEventsThis.get(position));
                                         myIntent.putExtra("showWelcome", false);
+                                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         getBaseContext().startActivity(myIntent);
                                     }
                                 });

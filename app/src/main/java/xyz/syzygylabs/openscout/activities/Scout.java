@@ -201,6 +201,7 @@ public class Scout extends AppCompatActivity {
                                 @Override public void onItemClick(View view, int position) {
                                     Intent myIntent = new Intent(getBaseContext(), TeamPage.class);
                                     myIntent.putExtra("teamNum", teams.get(position).getTeamNumber());
+                                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     getBaseContext().startActivity(myIntent);
                                 }
                             });
