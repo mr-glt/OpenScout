@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                                 myIntent.putExtra("event", events.get(i).getEventKeys());
                                 myIntent.putExtra("eventName", events.get(i).getEventName());
                                 myIntent.putExtra("showWelcome", true);
+                                myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 getBaseContext().startActivity(myIntent);
                             }
                         }

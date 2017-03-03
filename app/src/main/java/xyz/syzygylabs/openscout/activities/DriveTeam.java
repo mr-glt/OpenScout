@@ -166,6 +166,7 @@ public class DriveTeam extends AppCompatActivity {
         myIntent.putExtra("event", eventKey);
         myIntent.putExtra("eventName", eventName);
         myIntent.putExtra("showWelcome", false);
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getBaseContext().startActivity(myIntent);
     }
     public void showInfo(View v){
